@@ -51,3 +51,96 @@ header{
     padding:0 34px;
 
 }
+
+
+.logo{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:var(--text);
+
+    letter-spacing:-1px;
+
+}
+
+.logo span{
+
+    color:var(--primary);
+
+}
+
+
+
+.menu{
+
+    display:flex;
+
+    gap:42px;
+
+}
+
+.menu a{
+
+    color:var(--text-light);
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.menu a:hover{
+
+    color:var(--primary);
+
+}
+
+
+
+
+.nav-button{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    height:48px;
+
+    padding:0 26px;
+
+    border-radius:999px;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.nav-button:hover{
+
+    background:var(--primary-dark);
+
+    transform:translateY(-2px);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
