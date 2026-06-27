@@ -1,62 +1,61 @@
+/* ===========================================
+   Design System
+=========================================== */
+
 :root{
 
-/* colors */
+    /* Colors */
 
---bg:#04060d;
+    --primary:#2563EB;
+    --primary-dark:#1D4ED8;
 
---bg2:#0d1324;
+    --text:#111827;
+    --text-light:#4B5563;
 
---card:#111827;
+    --background:#FFFFFF;
+    --section:#F8FAFC;
 
---line:#202b45;
+    --border:#E5E7EB;
 
---white:#ffffff;
+    --success:#10B981;
 
---text:#d6d9e0;
+    --radius:20px;
 
---muted:#8893aa;
+    --shadow:
+        0 20px 60px rgba(15,23,42,.08);
 
---primary:#3B82F6;
+    --transition:.35s ease;
 
---secondary:#00D4FF;
-
---accent:#6EE7FF;
-
---success:#00ff99;
-
-
-/* gradients */
-
---gradient:
-linear-gradient(
-135deg,
-#3B82F6,
-#00D4FF,
-#6EE7FF
-);
+}
 
 
-/* fonts */
+/* ===========================================
+   Typography
+=========================================== */
 
---title:
-'Space Grotesk',
-sans-serif;
+:root{
 
---body:
-'Inter',
-sans-serif;
+    --font:
+        "Pretendard",
+        sans-serif;
+
+    --title-size:64px;
+
+    --subtitle-size:22px;
+
+    --body-size:17px;
+
+}
 
 
-/* spacing */
+/* ===========================================
+   Layout
+=========================================== */
 
---container:1280px;
+:root{
 
---radius:22px;
+    --container:1280px;
 
-
-/* shadow */
-
---shadow:
-0 30px 80px rgba(0,0,0,.45);
+    --nav-height:84px;
 
 }
