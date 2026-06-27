@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>무료 서체 실시간 비교</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=IBM+Plex+Sans:wght@300;400&family=Roboto:wght@300;400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f4ef;
+      --card: #ffffff;
+      --ink: #171717;
+      --muted: #6f6a60;
+      --line: #ddd7ca;
+      --soft: #f0ece3;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 42px 22px 70px;
+    }
+
+    header { margin-bottom: 22px; }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -0.045em;
+      font-weight: 750;
+    }
+
+    .desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .input-panel {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      margin: 24px 0 26px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 34px rgba(0,0,0,0.06);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    textarea {
+      display: block;
+      width: 100%;
+      min-height: 112px;
+      resize: vertical;
+      padding: 18px 20px;
+      border: 2px solid #111;
+      border-radius: 16px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 24px;
+      line-height: 1.35;
+      outline: none;
+    }
+
+    textarea:focus {
+      box-shadow: 0 0 0 4px rgba(0,0,0,0.08);
+    }
+
+    .hint {
+      margin-top: 9px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.045);
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .name {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .meta {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .badge {
+      flex: 0 0 auto;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: #3d3a34;
+      border: 1px solid var(--line);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .sample {
+      min-height: 100px;
+      white-space: pre-wrap;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+      font-size: clamp(34px, 6vw, 78px);
+      line-height: 1.06;
+      letter-spacing: -0.055em;
+      font-weight: 300;
+    }
+
+    .inter { font-family: "Inter", "Noto Sans KR", sans-serif; }
+    .roboto { font-family: "Roboto", "Noto Sans KR", sans-serif; }
+    .arial-nova { font-family: "Arial Nova", Arial, "Noto Sans KR", sans-serif; }
+    .nimbus { font-family: "Nimbus Sans L", "Nimbus Sans", Arial, "Noto Sans KR", sans-serif; }
+    .tex-gyre { font-family: "TeX Gyre Heros", "Nimbus Sans", Arial, "Noto Sans KR", sans-serif; }
+    .ibm-plex { font-family: "IBM Plex Sans", "Noto Sans KR", sans-serif; }
+
+    .note {
+      margin-top: 26px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.66);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 640px) {
+      .wrap { padding: 30px 15px 54px; }
+      .input-panel { padding: 14px; }
+      textarea { font-size: 20px; }
+      .top { display: block; }
+      .badge { display: inline-block; margin-top: 10px; }
+      .sample { font-size: 38px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>무료 서체 실시간 비교</h1>
+      <p class="desc">아래 입력창에 글을 쓰면 각 무료 대체 서체마다 같은 글이 바로 표시됩니다. 유료 서체 목록은 제거했습니다.</p>
+    </header>
+
+    <section class="input-panel" aria-label="문장 입력 영역">
+      <label for="textInput">비교할 글 입력</label>
+      <textarea id="textInput" placeholder="여기에 글을 입력하세요">US TAX SERVICE
+미국 법인 설립 후가 중요합니다.</textarea>
+      <div class="hint">입력 내용은 아래 모든 서체 카드에 실시간으로 적용됩니다.</div>
+    </section>
+
+    <section class="grid" aria-label="무료 서체 비교 목록">
+      <article class="card">
+        <div class="top">
+          <div>
+            <div class="name">Inter Light</div>
+            <div class="meta">무료 대체 후보 · 영문 제목용으로 깔끔한 네오그로테스크 느낌</div>
+          </div>
+          <div class="badge">무료</div>
+        </div>
+        <div class="sample inter live-sample"></div>
+      </article>
+
+      <article class="card">
+        <div class="top">
+          <div>
+            <div class="name">Roboto Light</div>
+            <div class="meta">무료 대체 후보 · Android/Google 계열에서 많이 쓰이는 산세리프</div>
+          </div>
+          <div class="badge">무료</div>
+        </div>
+        <div class="sample roboto live-sample"></div>
+      </article>
+
+      <article class="card">
+        <div class="top">
+          <div>
+            <div class="name">Arial Nova Light</div>
+            <div class="meta">무료/시스템 대체 후보 · 설치 환경에 따라 표시 여부가 달라질 수 있음</div>
+          </div>
+          <div class="badge">무료 후보</div>
+        </div>
+        <div class="sample arial-nova live-sample"></div>
+      </article>
+
+      <article class="card">
+        <div class="top">
+          <div>
+            <div class="name">Nimbus Sans L</div>
+            <div class="meta">무료 대체 후보 · Helvetica와 유사한 분위기의 산세리프</div>
+          </div>
+          <div class="badge">무료</div>
+        </div>
+        <div class="sample nimbus live-sample"></div>
+      </article>
+
+      <article class="card">
+        <div class="top">
+          <div>
+            <div class="name">TeX Gyre Heros</div>
+            <div class="meta">무료 대체 후보 · Helvetica 계열 대체로 자주 쓰이는 서체</div>
+          </div>
+          <div class="badge">무료</div>
+        </div>
+        <div class="sample tex-gyre live-sample"></div>
+      </article>
+
+      <article class="card">
+        <div class="top">
+          <div>
+            <div class="name">IBM Plex Sans Light</div>
+            <div class="meta">무료 대체 후보 · 조금 더 개성 있는 기업형 산세리프</div>
+          </div>
+          <div class="badge">무료</div>
+        </div>
+        <div class="sample ibm-plex live-sample"></div>
+      </article>
+    </section>
+
+    <div class="note">
+      참고: 일부 서체가 컴퓨터에 설치되어 있지 않으면 브라우저가 대체 서체로 표시할 수 있습니다. Inter, Roboto, IBM Plex Sans, Noto Sans KR은 Google Fonts에서 불러오도록 설정했습니다.
+    </div>
+  </main>
+
+  <script>
+    const input = document.getElementById('textInput');
+    const samples = document.querySelectorAll('.live-sample');
+
+    function updateSamples() {
+      const value = input.value || 'US TAX SERVICE\n미국 법인 설립 후가 중요합니다.';
+      samples.forEach(sample => {
+        sample.textContent = value;
+      });
+    }
+
+    input.addEventListener('input', updateSamples);
+    updateSamples();
+  </script>
+</body>
+</html>
