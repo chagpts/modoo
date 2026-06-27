@@ -1,261 +1,217 @@
-/*==============================
-
+/* ==========================================
 Dashboard
+========================================== */
 
-==============================*/
+.dashboard-preview{
 
-.hero-dashboard{
+    width:640px;
 
-position:relative;
+    border-radius:30px;
 
-display:flex;
+    background:white;
 
-justify-content:center;
+    border:1px solid #E5E7EB;
 
-align-items:center;
+    box-shadow:
+    0 30px 80px rgba(15,23,42,.08);
 
-}
-
-.dashboard{
-
-width:520px;
-
-height:640px;
-
-background:rgba(255,255,255,.04);
-
-border:1px solid rgba(255,255,255,.08);
-
-border-radius:32px;
-
-backdrop-filter:blur(35px);
-
-overflow:hidden;
-
-box-shadow:
-
-0 30px 80px rgba(0,0,0,.45);
-
-position:relative;
-
-animation:
-
-floating 8s ease-in-out infinite;
+    padding:32px;
 
 }
 
-.dashboard::before{
 
-content:"";
-
-position:absolute;
-
-width:300px;
-
-height:300px;
-
-background:#00d4ff33;
-
-filter:blur(120px);
-
-top:-120px;
-
-right:-120px;
-
-}
 
 .dashboard-header{
 
-height:72px;
+    display:flex;
 
-display:flex;
+    justify-content:space-between;
 
-align-items:center;
+    align-items:center;
 
-padding:0 28px;
-
-border-bottom:1px solid rgba(255,255,255,.08);
+    margin-bottom:35px;
 
 }
 
-.dashboard-header h3{
+.dashboard-title{
 
-color:white;
+    font-size:22px;
 
-font-size:18px;
-
-font-weight:600;
+    font-weight:700;
 
 }
 
-.dashboard-content{
+.status{
 
-padding:30px;
+    color:#10B981;
 
-display:flex;
-
-flex-direction:column;
-
-gap:24px;
-
-}
-.audit-card{
-
-padding:24px;
-
-background:
-
-rgba(255,255,255,.05);
-
-border-radius:20px;
-
-border:
-
-1px solid rgba(255,255,255,.06);
-
-transition:.4s;
-
-}
-
-.audit-card:hover{
-
-transform:translateY(-8px);
-
-background:
-
-rgba(255,255,255,.08);
-
-}
-
-.audit-title{
-
-font-size:14px;
-
-color:var(--secondary);
-
-margin-bottom:12px;
-
-}
-
-.audit-value{
-
-font-size:36px;
-
-color:white;
-
-font-weight:700;
-
-}
-
-.progress{
-
-width:100%;
-
-height:10px;
-
-background:#1c2438;
-
-border-radius:20px;
-
-overflow:hidden;
-
-}
-
-.progress span{
-
-display:block;
-
-height:100%;
-
-width:82%;
-
-background:
-
-linear-gradient(
-
-90deg,
-
-#00d4ff,
-
-#3b82f6
-
-);
-
-border-radius:20px;
+    font-weight:600;
 
 }
 
 
 
-.timeline{
+.upload-box{
 
-display:flex;
+    border:2px dashed #CBD5E1;
 
-flex-direction:column;
+    border-radius:24px;
 
-gap:18px;
+    padding:50px;
 
-}
+    text-align:center;
 
-.timeline-item{
-
-display:flex;
-
-gap:16px;
-
-align-items:center;
+    transition:.35s;
 
 }
 
-.circle{
+.upload-box:hover{
 
-width:14px;
+    border-color:#2563EB;
 
-height:14px;
-
-background:#00d4ff;
-
-border-radius:50%;
-
-box-shadow:
-
-0 0 20px #00d4ff;
+    transform:translateY(-3px);
 
 }
 
-.timeline-item p{
+.upload-icon{
 
-color:#cfd7ea;
+    font-size:60px;
 
-font-size:15px;
-
-}
-
-@keyframes floating{
-
-0%{
-
-transform:
-
-translateY(0px);
+    margin-bottom:20px;
 
 }
 
-50%{
+.upload-box h3{
 
-transform:
+    font-size:24px;
 
-translateY(-18px);
-
-}
-
-100%{
-
-transform:
-
-translateY(0px);
+    margin-bottom:10px;
 
 }
 
+.upload-box p{
+
+    color:#64748B;
+
 }
+
+
+
+.process{
+
+    margin:45px 0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.step{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    background:#F1F5F9;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.complete{
+
+    background:#DBEAFE;
+
+    color:#2563EB;
+
+}
+
+.active{
+
+    background:#2563EB;
+
+    color:white;
+
+}
+
+.line{
+
+    flex:1;
+
+    height:3px;
+
+    background:#E2E8F0;
+
+}
+
+
+
+.result{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+.result div{
+
+    background:#F8FAFC;
+
+    border-radius:18px;
+
+    padding:25px;
+
+}
+
+.result span{
+
+    color:#64748B;
+
+}
+
+.result strong{
+
+    display:block;
+
+    margin-top:10px;
+
+    font-size:34px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
