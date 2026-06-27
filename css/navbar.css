@@ -1,0 +1,53 @@
+/* ===========================================
+   Navigation
+=========================================== */
+
+header{
+
+    position:fixed;
+
+    top:24px;
+
+    left:0;
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    z-index:999;
+
+}
+
+.navbar{
+
+    width:min(var(--container),92%);
+
+    height:74px;
+
+    background:rgba(255,255,255,.92);
+
+    border:1px solid rgba(229,231,235,.9);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:999px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.05);
+
+}
+
+.navbar .container{
+
+    height:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 34px;
+
+}
