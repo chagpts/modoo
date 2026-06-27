@@ -1,0 +1,62 @@
+:root{
+
+/* colors */
+
+--bg:#04060d;
+
+--bg2:#0d1324;
+
+--card:#111827;
+
+--line:#202b45;
+
+--white:#ffffff;
+
+--text:#d6d9e0;
+
+--muted:#8893aa;
+
+--primary:#3B82F6;
+
+--secondary:#00D4FF;
+
+--accent:#6EE7FF;
+
+--success:#00ff99;
+
+
+/* gradients */
+
+--gradient:
+linear-gradient(
+135deg,
+#3B82F6,
+#00D4FF,
+#6EE7FF
+);
+
+
+/* fonts */
+
+--title:
+'Space Grotesk',
+sans-serif;
+
+--body:
+'Inter',
+sans-serif;
+
+
+/* spacing */
+
+--container:1280px;
+
+--radius:22px;
+
+
+/* shadow */
+
+--shadow:
+0 30px 80px rgba(0,0,0,.45);
+
+}
