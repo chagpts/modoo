@@ -1,0 +1,24 @@
+body {
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+}
+.container { width: min(var(--container), calc(100% - 40px)); margin: 0 auto; }
+.section-padding { padding: 96px 0; }
+.section-head { text-align: center; max-width: 760px; margin: 0 auto 42px; }
+.section-head.left { text-align: left; margin-left: 0; }
+.section-kicker { display: inline-block; color: var(--primary); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; font-size: .84rem; }
+.section-head h2, .career-card h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.18; letter-spacing: -.04em; margin-bottom: 14px; }
+.section-head p, .career-card p { color: var(--muted); }
+.btn-primary, .btn-secondary, .nav-button, .write-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border: 0; border-radius: 999px; font-weight: 800; transition: .2s ease;
+}
+.btn-primary { color: #fff; background: linear-gradient(135deg, var(--primary), var(--purple)); padding: 14px 20px; box-shadow: 0 12px 30px rgba(37,99,235,.22); }
+.btn-primary.small { padding: 11px 16px; font-size: .92rem; }
+.btn-secondary { color: var(--primary); background: #eff6ff; padding: 14px 20px; }
+.btn-primary:hover, .btn-secondary:hover, .nav-button:hover, .write-btn:hover { transform: translateY(-2px); }
+.card, .roadmap-card, .price-card, .audit-panel, .board-wrap, .career-card { background: var(--card); border: 1px solid rgba(15,23,42,.08); box-shadow: var(--shadow); }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.show { opacity: 1; transform: translateY(0); }
