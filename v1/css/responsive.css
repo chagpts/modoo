@@ -1,0 +1,110 @@
+@media (max-width: 1024px) {
+    .menu,
+    .nav-button {
+        display: none;
+    }
+
+    .mobile-menu-button {
+        display: block;
+    }
+
+    .menu.is-open {
+        position: absolute;
+        top: 76px;
+        left: 20px;
+        right: 20px;
+        display: grid;
+        gap: 8px;
+        padding: 18px;
+        border: 1px solid var(--color-line);
+        border-radius: 18px;
+        background: var(--color-white);
+        box-shadow: var(--shadow-md);
+    }
+
+    .menu.is-open a {
+        display: block;
+        padding: 12px;
+    }
+
+    .hero-grid,
+    .practice-grid,
+    .dashboard-grid,
+    .company-card,
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 44px;
+    }
+
+    .feature-grid,
+    .price-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .price-card.featured {
+        transform: none;
+    }
+}
+
+@media (max-width: 720px) {
+    .container {
+        width: min(100% - 28px, var(--container));
+    }
+
+    .section {
+        padding: 78px 0;
+    }
+
+    .hero {
+        padding: 58px 0 82px;
+    }
+
+    .hero-left p,
+    p {
+        font-size: 16px;
+    }
+
+    .hero-buttons,
+    .footer-grid {
+        flex-direction: column;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+    }
+
+    .hero-stats,
+    .feature-grid,
+    .price-grid,
+    .company-points {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-preview,
+    .audit-panel,
+    .company-card,
+    .contact-form,
+    .price-card,
+    .feature-card {
+        padding: 24px;
+        border-radius: 22px;
+    }
+
+    .process {
+        grid-template-columns: 1fr;
+    }
+
+    .line {
+        width: 2px;
+        height: 14px;
+        margin: 0 auto;
+    }
+
+    .timeline-item {
+        grid-template-columns: 1fr;
+    }
+
+    .risk-score strong {
+        font-size: 64px;
+    }
+}

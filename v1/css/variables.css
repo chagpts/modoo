@@ -1,0 +1,20 @@
+:root {
+    --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --color-bg: #f7f9fc;
+    --color-white: #ffffff;
+    --color-dark: #101828;
+    --color-text: #344054;
+    --color-muted: #667085;
+    --color-line: #e4e7ec;
+    --color-primary: #2457ff;
+    --color-primary-dark: #1538b8;
+    --color-secondary: #0ea5e9;
+    --color-green: #12b76a;
+    --color-warning: #f79009;
+    --shadow-sm: 0 8px 24px rgba(16, 24, 40, 0.08);
+    --shadow-md: 0 18px 50px rgba(16, 24, 40, 0.14);
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 30px;
+    --container: 1160px;
+}

@@ -1,0 +1,132 @@
+body {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.6;
+    word-break: keep-all;
+}
+
+.container {
+    width: min(100% - 40px, var(--container));
+    margin: 0 auto;
+}
+
+.section {
+    padding: 110px 0;
+}
+
+.section-heading {
+    max-width: 720px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.section-heading.align-left {
+    margin-left: 0;
+    text-align: left;
+}
+
+.eyebrow,
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid rgba(36, 87, 255, 0.14);
+    border-radius: 999px;
+    color: var(--color-primary);
+    background: rgba(36, 87, 255, 0.08);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+h1, h2, h3 {
+    color: var(--color-dark);
+    letter-spacing: -0.04em;
+    line-height: 1.18;
+}
+
+h1 {
+    font-size: clamp(42px, 6vw, 72px);
+    margin: 24px 0 22px;
+}
+
+h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    margin: 16px 0 18px;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+p {
+    color: var(--color-muted);
+    font-size: 18px;
+}
+
+.btn-primary,
+.btn-secondary,
+.nav-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    padding: 0 22px;
+    border-radius: 999px;
+    font-weight: 800;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.btn-primary,
+.nav-button {
+    color: var(--color-white);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    box-shadow: 0 12px 30px rgba(36, 87, 255, 0.26);
+}
+
+.btn-secondary {
+    color: var(--color-dark);
+    background: var(--color-white);
+    border: 1px solid var(--color-line);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.nav-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.full {
+    width: 100%;
+}
+
+.text-link {
+    display: inline-flex;
+    margin-top: 26px;
+    color: var(--color-primary);
+    font-weight: 800;
+}
+
+.check-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.check-list li {
+    position: relative;
+    padding-left: 30px;
+    color: var(--color-dark);
+    font-weight: 700;
+}
+
+.check-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-green);
+    font-weight: 900;
+}
