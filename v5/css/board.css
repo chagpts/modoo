@@ -1,0 +1,17 @@
+.board-section { background: #fff; }
+.board-wrap { border-radius: 28px; overflow: hidden; }
+.board-toolbar { display: flex; justify-content: space-between; gap: 14px; align-items: center; padding: 18px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.tab { border: 1px solid var(--line); background: #fff; color: #475569; border-radius: 999px; padding: 8px 13px; font-weight: 800; }
+.tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.write-btn { padding: 9px 15px; background: #0f172a; color: #fff; }
+.board-table { width: 100%; }
+.board-row { width: 100%; display: grid; grid-template-columns: 90px 1fr 120px 80px 120px; gap: 12px; align-items: center; padding: 15px 18px; border: 0; border-bottom: 1px solid #eef2f7; background: #fff; text-align: left; color: #475569; }
+.board-row:not(.board-head):hover { background: #f8fafc; }
+.board-head { color: #334155; font-weight: 900; background: #f8fafc; }
+.tag { display: inline-flex; justify-content: center; border-radius: 999px; padding: 5px 8px; font-size: .78rem; font-weight: 900; }
+.tag.notice { background: #fee2e2; color: #b91c1c; }
+.tag.resource { background: #dcfce7; color: #047857; }
+.tag.qna { background: #e0f2fe; color: #0369a1; }
+.tag.case { background: #ede9fe; color: #6d28d9; }
+.board-empty { display: none; padding: 28px; text-align: center; color: var(--muted); }

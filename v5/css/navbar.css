@@ -1,0 +1,8 @@
+header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.86); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(15,23,42,.06); }
+.nav-inner { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.logo { font-weight: 900; font-size: 1.45rem; letter-spacing: -.04em; }
+.logo span, .footer span { color: var(--primary); }
+.menu { display: flex; align-items: center; gap: 22px; color: #334155; font-weight: 700; font-size: .94rem; }
+.menu a:hover { color: var(--primary); }
+.nav-button { padding: 10px 16px; background: var(--text); color: #fff; }
+.menu-toggle { display: none; border: 0; background: #f1f5f9; border-radius: 10px; padding: 8px 10px; }
