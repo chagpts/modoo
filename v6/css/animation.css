@@ -1,0 +1,6 @@
+@keyframes floatCard { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.dashboard-preview { animation: floatCard 5s ease-in-out infinite; }
+.modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 20px; background: rgba(2,6,23,.58); }
+.modal[aria-hidden="false"] { display: flex; }
+.modal-card { width: min(560px, 100%); position: relative; display: grid; gap: 12px; padding: 26px; border-radius: 24px; background: #fff; }
+.modal-close { position: absolute; top: 14px; right: 14px; border: 0; background: #f1f5f9; border-radius: 999px; width: 34px; height: 34px; font-size: 1.2rem; }
