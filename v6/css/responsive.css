@@ -1,0 +1,20 @@
+@media (max-width: 1020px) {
+  .hero-grid, .lab-grid, .contact-grid, .career-card { grid-template-columns: 1fr; }
+  .roadmap-grid { grid-template-columns: repeat(2, 1fr); }
+  .price-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .container { width: min(100% - 28px, var(--container)); }
+  .section-padding { padding: 72px 0; }
+  .menu { position: fixed; left: 14px; right: 14px; top: 74px; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 12px; border-radius: 18px; background: #fff; box-shadow: var(--shadow); }
+  .menu.open { display: flex; }
+  .menu a { display: block; padding: 12px; }
+  .menu-toggle { display: inline-flex; }
+  .nav-button { display: none; }
+  .hero-stats { grid-template-columns: 1fr; }
+  .process { overflow-x: auto; padding-bottom: 6px; }
+  .roadmap-grid { grid-template-columns: 1fr; }
+  .board-row { grid-template-columns: 72px 1fr; }
+  .board-row span:nth-child(3), .board-row span:nth-child(4), .board-row span:nth-child(5), .board-head span:nth-child(3), .board-head span:nth-child(4), .board-head span:nth-child(5) { display: none; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
