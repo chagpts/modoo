@@ -18,3 +18,13 @@
   .board-row span:nth-child(3), .board-row span:nth-child(4), .board-row span:nth-child(5), .board-head span:nth-child(3), .board-head span:nth-child(4), .board-head span:nth-child(5) { display: none; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
 }
+
+@media (max-width: 900px) {
+  .compare-head { flex-direction: column; align-items: flex-start; }
+  .compare-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .compare-grid { grid-template-columns: 1fr; }
+  .price-card.featured { transform: none; }
+}
