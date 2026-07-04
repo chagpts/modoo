@@ -150,28 +150,71 @@
     </section>
 
     <section id="demo" class="section-padding demo-section">
-      <div class="container demo-grid">
-        <div class="section-copy reveal">
-          <h2>샘플 데이터 기반으로 플랫폼 처리 흐름을 검증할 수 있습니다.</h2>
-          <p>
-            데모 환경은 합성 데이터셋을 기반으로 구성되며, 실제 도입 단계에서는 고객사의 ERP·회계 시스템 구조,
-            권한 체계, 내부통제 기준에 맞춰 분석 룰과 결과 양식을 조정합니다.
-          </p>
-          <button class="btn-primary" id="runDemo" type="button">분석 시뮬레이션 실행</button>
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>대표 샘플: 대출 계약서와 ERP 로그를 연결한 내부회계 점검</h2>
+          <p>문서 OCR, 회계처리 검토, 접근통제 점검, 내부회계관리 조서와 보고서 초안까지 하나의 업무 흐름으로 보여줍니다.</p>
         </div>
-        <div class="demo-panel reveal">
-          <div class="demo-header"><strong>Risk Analysis Console</strong><span id="demoStatus">Ready</span></div>
-          <div class="upload-preview">
-            <span>Input Dataset</span>
-            <b>journal.xlsx · receipts.zip · access_matrix.csv · erp_login_log.csv</b>
+
+        <div class="sample-shell reveal">
+          <div class="sample-left">
+            <div class="sample-case-title">
+              <span>Sample Case</span>
+              <h3>운영자금 대출 실행 및 시스템 접근 이력 점검</h3>
+              <p>대출 계약서 PDF와 ERP 접속 로그를 함께 분석하여 회계 반영의 적정성, 승인·권한 통제, 내부회계관리 문서화까지 검토합니다.</p>
+            </div>
+
+            <div class="sample-inputs">
+              <div class="sample-file">
+                <b>loan_agreement.pdf</b>
+                <span>대출금 5억원 · 연 5.2% · 만기 3년 · 실행일 2026.06.29</span>
+              </div>
+              <div class="sample-file">
+                <b>erp_access_log.csv</b>
+                <span>계약 등록, 전표 생성, 승인 변경, 관리자 접속 이력</span>
+              </div>
+            </div>
+
+            <button class="btn-primary" id="runDemo" type="button">샘플 분석 실행</button>
           </div>
-          <div class="risk-results" id="riskResults">
-            <div><span>Duplicate Payment</span><strong>대기</strong></div>
-            <div><span>Missing Evidence</span><strong>대기</strong></div>
-            <div><span>Access Risk</span><strong>대기</strong></div>
-            <div><span>Log Anomaly</span><strong>대기</strong></div>
+
+          <div class="sample-console">
+            <div class="demo-header"><strong>AI Audit Workbench</strong><span id="demoStatus">Ready</span></div>
+
+            <div class="sample-pipeline" aria-label="샘플 처리 단계">
+              <div class="pipeline-step active"><b>01</b><span>AI OCR</span></div>
+              <div class="pipeline-step"><b>02</b><span>회계처리 검토</span></div>
+              <div class="pipeline-step"><b>03</b><span>통제·취약점 점검</span></div>
+              <div class="pipeline-step"><b>04</b><span>조서·보고서 생성</span></div>
+            </div>
+
+            <div class="sample-results" id="riskResults">
+              <article>
+                <span>OCR 추출</span>
+                <strong>대기</strong>
+                <p>계약금액, 이자율, 만기, 실행일, 상환 조건</p>
+              </article>
+              <article>
+                <span>회계처리 검토</span>
+                <strong>대기</strong>
+                <p>차입금 인식, 이자비용 계산, 유동·비유동 분류</p>
+              </article>
+              <article>
+                <span>통제·취약점 점검</span>
+                <strong>대기</strong>
+                <p>승인권한, 관리자 접속, 전표 변경 이력</p>
+              </article>
+              <article>
+                <span>산출물</span>
+                <strong>대기</strong>
+                <p>내부회계관리 조서, 예외 요약, 개선 권고 보고서</p>
+              </article>
+            </div>
+
+            <div class="sample-output" id="reportPreview">
+              샘플 분석을 실행하면 AI가 문서와 로그에서 핵심 필드를 추출하고, 회계처리 검토 결과와 통제 점검 의견을 산출합니다.
+            </div>
           </div>
-          <div class="report-preview" id="reportPreview">분석 실행 후 예외 항목 요약과 조서 초안이 표시됩니다.</div>
         </div>
       </div>
     </section>
