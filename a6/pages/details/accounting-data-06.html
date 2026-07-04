@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>샘플링과 전체 모집단 분석 비교 | AuditSecu Academy</title>
+  <meta name="description" content="샘플링과 전체 모집단 분석 비교 세부 교육과정" />
+  <link rel="stylesheet" href="../a/css/reset.css" />
+  <link rel="stylesheet" href="../a/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="../a/index.html">Audit<span>Secu</span> Academy</a>
+      <button class="nav-toggle" type="button" aria-label="메뉴 표시" data-nav-toggle>☰</button>
+      <nav class="site-nav" data-nav>
+        <a href="../a/index.html#curriculum">실무 교육과정</a>
+        <a href="../a/pages/synthetic-data.html">데이터셋 구축</a><a href="../a/pages/ai-ocr.html">AI OCR 구축</a>
+        <a href="../a/pages/case-audit.html">통합 감사 사례</a>
+        <a href="../a/index.html#contact">교육 상담</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-title">
+        <div class="page-top">
+          <a class="back-link" href="../a/pages/accounting-data.html">← 회계 데이터 이해 과정으로 이동</a>
+          <a class="back-link" href="../a/index.html#curriculum">전체 교육과정</a>
+        </div>
+        <h1>06. 샘플링과 전체 모집단 분석 비교</h1>
+        <p>표본감사의 논리와 전체 모집단 분석의 장단점을 같은 거래 데이터로 비교해 검토합니다.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container detail-content wide-detail">
+        <article class="content-panel highlight-panel">
+          <h2>실습 시나리오</h2>
+          <p>매출 거래가 50,000건 존재합니다. 일반감사팀은 중요성 기준에 따라 표본을 선정하려 하고, 전산감사팀은 전체 거래를 분석해 예외 패턴을 우선 식별하고자 합니다.</p>
+          <p><strong>핵심 감사위험:</strong> 표본에 포함되지 않은 거래에서 중요한 오류가 발생하거나, 전체 분석 결과를 해석하지 못해 불필요한 예외만 많이 구축하는 위험입니다.</p>
+        </article>
+
+        <div class="compare-grid">
+          <article class="content-panel">
+            <h2>일반 회계감사 실습</h2>
+            <p>감사인이 실제 조서를 작성한다는 전제로 증빙 검토, 인터뷰, 표본 검토, 결론 작성까지 수행합니다.</p>
+            <ul><li>모집단을 정의하고 표본추출 단위, 표본 크기, 선정 기준을 문서화합니다.</li><li>금액기준 표본, 무작위 표본, 특정위험 표본을 구분해 선수립합니다.</li><li>선정 표본에 대해 계약서, 출고증, 세금계산서, 입금내역을 검토합니다.</li><li>표본 오류가 발견되면 오류율, 금액왜곡, 추가 표본 필요성을 검토합니다.</li><li>학습자는 표본 선정 근거와 표본 테스트 결과표를 작성합니다.</li></ul>
+          </article>
+          <article class="content-panel">
+            <h2>전산감사 실습</h2>
+            <p>같은 감사위험을 데이터 관점으로 치환하여 원천 테이블, 로그, 마스터, 예외 조건을 활용합니다.</p>
+            <ul><li>전체 매출 모집단에 대해 금액, 일자, 거래처, 입력자, 승인자 기준으로 분포를 분석합니다.</li><li>Benford 성향, 라운드 금액, 마감일 집중, 동일 금액 반복, 야간·휴일 입력을 예외 조건으로 설수립합니다.</li><li>예외 거래를 위험 점수로 정렬하고 일반감사 표본과 겹치는지 검토합니다.</li><li>전체 분석 결과가 모두 오류를 의미하지 않으므로 후속 검토 규칙을 설계합니다.</li><li>학습자는 전체 모집단 예외 분석 대시보드용 표를 작성합니다.</li></ul>
+          </article>
+        </div>
+
+        <article class="content-panel">
+          <h2>일반감사 vs 전산감사 비교 포인트</h2>
+          <div class="table-wrap">
+            <table class="audit-table">
+              <thead><tr><th>구분</th><th>일반 회계감사</th><th>전산감사</th></tr></thead>
+              <tbody><tr><th>선정 논리</th><td>일반감사는 대표성 또는 중요성에 따라 일부 거래를 선택합니다.</td><td>전산감사는 전체를 훑은 뒤 위험도가 높은 거래를 우선 검토합니다.</td></tr><tr><th>장점</th><td>증빙 검토가 깊고 감사 판단을 명확히 남기기 좋습니다.</td><td>누락 없는 범위 검토과 반복 수행에 강합니다.</td></tr><tr><th>주의점</th><td>표본 외 오류를 식별하지 못할 수 있습니다.</td><td>예외가 많아질수록 후속 판단 기준이 필요합니다.</td></tr></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="content-panel">
+          <h2>실습 데이터 예시</h2>
+          <p>교육에서는 다음과 등의 필드를 가진 샘플 CSV 또는 엑셀 파일을 사용합니다. 데이터는 회사 실무 자료와 유사한 구조로 작성하고, 일부 오류를 의도적으로 반영하여 비교 실습을 진행합니다.</p>
+          <ul class="code-list"><li><code>POPULATION: transaction_id, amount, posting_date, customer_id, user_id</code></li><li><code>SAMPLE_SELECTION: method, sample_id, reason, tested_result</code></li><li><code>EXCEPTION_SCORE: transaction_id, rule_hit_count, risk_score, follow_up_result</code></li></ul>
+        </article>
+
+        <article class="content-panel practice-flow">
+          <h2>교육 진행 흐름</h2>
+          <ol>
+            <li><strong>이슈 읽기:</strong> 회계감사 시험형 문제 또는 현업 시나리오를 읽고 감사위험을 표시합니다.</li>
+            <li><strong>일반감사 설계:</strong> 필요한 증빙, 표본 선정 기준, 인터뷰 질문, 조서 결론 문구를 작성합니다.</li>
+            <li><strong>데이터 설계:</strong> 필요한 테이블과 필드를 정의하고, 누락되면 어떤 분석이 불가능한지 설명합니다.</li>
+            <li><strong>예외 추출:</strong> 전체 모집단에서 규칙 기반 예외를 작성하고 일반감사 표본과 비교합니다.</li>
+            <li><strong>통합 결론:</strong> 증빙 검토 결과와 데이터 분석 결과가 서로 맞는지 검토한 뒤 최종 발견사항을 정리합니다.</li>
+          </ol>
+        </article>
+
+        <article class="content-panel">
+          <h2>교육 산출물</h2>
+          <ul><li>표본 선정 조서</li><li>표본 테스트 결과표</li><li>전체 모집단 분석 규칙표</li><li>예외 거래 위험 점수표</li></ul>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>Audit<span>Secu</span> Academy</strong>
+        <p>회계감사, 내부회계관리, 전산감사, 정보보안 감사 영역을 통합한 실무 중심 교육 플랫폼</p>
+      </div>
+      <div class="footer-links">
+        <a href="../a/index.html#curriculum">교육과정</a>
+        <a href="../a/index.html#contact">상담</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../a/js/main.js"></script>
+</body>
+</html>

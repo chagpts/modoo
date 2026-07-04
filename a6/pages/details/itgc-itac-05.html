@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>인터페이스 통제 | AuditSecu Academy</title>
+  <meta name="description" content="CISA 관점의 ITAC 중심 전산감사 실습 페이지" />
+  <link rel="stylesheet" href="../a/css/reset.css" />
+  <link rel="stylesheet" href="../a/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="../a/index.html">Audit<span>Secu</span> Academy</a>
+      <button class="nav-toggle" type="button" aria-label="메뉴 표시" data-nav-toggle>☰</button>
+      <nav class="site-nav" data-nav>
+        <a href="../a/index.html#curriculum">실무 교육과정</a>
+        <a href="../a/pages/synthetic-data.html">데이터셋 구축</a><a href="../a/pages/ai-ocr.html">AI OCR 구축</a>
+        <a href="../a/pages/case-audit.html">통합 감사 사례</a>
+        <a href="../a/index.html#contact">교육 상담</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-title">
+        <div class="page-top">
+          <a class="back-link" href="../a/pages/itgc-itac.html">← ITGC &amp; ITAC 과정으로 이동</a>
+          <a class="back-link" href="../a/index.html#curriculum">전체 교육과정</a>
+        </div>
+        <h1>인터페이스 통제</h1>
+        <p>주문, 출고, 세금계산서, 은행입금, 그룹웨어 승인 데이터가 ERP로 완전하고 정확하게 이전되는지 감사합니다.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container detail-content wide-detail">
+        <article class="content-panel highlight-panel">
+          <h2>04-05 실습 개요</h2>
+          <p>쇼핑몰 주문 데이터와 은행 입금 데이터가 인터페이스 서버를 거쳐 ERP 매출·수금 전표로 적재됩니다. 일부 파일은 오류폴더로 이동했고 담당자가 수동 보정했습니다. 감사인은 송신-수신-처리-예외 전 과정을 추적합니다.</p>
+          <p>이 페이지는 CISA식 정보시스템 감사 사고방식에 맞춰 감사계획, 시스템·데이터 흐름 이해, 핵심통제 식별, 테스트 수행, 예외 평가, 보고서 작성 순서로 구성하였습니다. 단순 개념 설명이 아니라 학습자가 실제 감사 조서에 옮길 수 있는 절차와 산출물 중심으로 진행합니다.</p>
+        </article>
+
+        <article class="content-panel">
+          <h2>감사위험과 ITAC 초점</h2>
+          <p>인터페이스 통제가 약하면 거래 누락, 중복 적재, 금액 변조, 기준정보 불일치가 발생합니다. ITAC 감사에서는 단순 파일 존재 여부가 아니라 건수·금액·해시·예외처리까지 검증합니다.</p>
+          <ul>
+            <li><strong>중점 ITAC:</strong> 송수신 건수 대사, 금액 합계 대사, 중복파일 차단, 오류파일 승인 보정, 인터페이스 계정 권한</li>
+            <li><strong>관련 재무제표 주장:</strong> 완전성, 정확성, 발생사실, 기간귀속, 분류, 승인</li>
+            <li><strong>감사인 판단 포인트:</strong> 통제가 자동으로 작동하는지, 사용자가 우회할 수 있는지, 예외가 검토되는지, 증거가 재현 가능한지 검토합니다.</li>
+          </ul>
+        </article>
+
+        <div class="compare-grid">
+          <article class="content-panel">
+            <h2>일반 ITGC 감사 접근</h2>
+            <ol>
+              <li>통제환경과 업무 프로세스를 이해하고 감사 범위를 확수립합니다.</li>
+              <li>권한관리, 변경관리, 운영관리, 배치관리 등 기반통제 설계 문서를 요청합니다.</li>
+              <li>표본을 선정하여 승인서, 로그, 티켓, 검토증거가 존재하는지 검토합니다.</li>
+              <li>통제 미비가 자동통제 신뢰성에 미치는 영향을 평가합니다.</li>
+              <li>문서상 통제와 실제 시스템 운영이 다른 부분을 발견사항으로 정리합니다.</li>
+            </ol>
+          </article>
+          <article class="content-panel">
+            <h2>ITAC 중심 전산감사 접근</h2>
+            <ol>
+              <li>업무거래가 시스템에서 입력·처리·출력되는 흐름을 데이터 단위로 추적합니다.</li>
+              <li>자동계산, 자동승인, 입력검증, 인터페이스, 예외리포트 통제를 식별합니다.</li>
+              <li>모집단 데이터를 추출하고 통제 조건식을 감사인이 독립적으로 재수행합니다.</li>
+              <li>시스템 결과와 감사인 재수행 결과의 차이를 예외로 분류합니다.</li>
+              <li>ITGC 미비와 ITAC 예외를 결합하여 통제 의존 가능 여부를 결론냅니다.</li>
+            </ol>
+          </article>
+        </div>
+
+        <article class="content-panel">
+          <h2>필요 데이터와 증빙 목록</h2>
+          <p>교육에서는 아래 증거를 요청목록 형태로 작성한 뒤, 각 증거의 원천 시스템과 추출 조건을 함께 기록합니다. 증거가 화면 캡처인지, 원천 로그인지, 담당자 가공 파일인지에 따라 신뢰수준을 구분합니다.</p>
+          <ul><li>송신 시스템 추출 로그</li><li>인터페이스 서버 수신 로그</li><li>ERP 적재 로그와 오류 로그</li><li>파일 해시값 또는 체크섬</li><li>수동보정 요청서와 승인내역</li></ul>
+        </article>
+
+        <article class="content-panel practice-flow">
+          <h2>실제 감사 실습 절차</h2>
+          <ol><li>송신 건수·금액 합계와 ERP 적재 건수·금액 합계를 일자별로 대사한다.</li><li>동일 파일명, 동일 해시, 동일 주문번호가 중복 적재되었는지 검토한다.</li><li>오류폴더 파일의 보정 전후 값을 비교하고 승인자를 검토한다.</li><li>인터페이스 계정이 필요한 최소권한만 보유하는지 권한 매트릭스와 대조한다.</li>
+            <li>예외가 발견되면 업무담당자 인터뷰로 원인을 검토하되, 인터뷰 내용만으로 종결하지 않고 원천 데이터와 승인 증거를 다시 대사합니다.</li>
+            <li>테스트 결과를 조서에 남길 때는 모집단 정의, 표본선정 기준, 테스트 조건, 예외 판단근거, 결론을 분리하여 작성합니다.</li>
+          </ol>
+        </article>
+
+        <article class="content-panel">
+          <h2>통제기술서 예시</h2>
+          <p>인터페이스는 송신 파일의 건수, 금액 합계, 해시값을 수신 후 검증하고 불일치 시 자동 적재를 중단하며 오류내역은 업무책임자 승인 후 재처리한다.</p>
+          <p>학습자는 이 문장을 그대로 외우는 것이 아니라, 통제 소유자, 통제 빈도, 사용 시스템, 입력 데이터, 처리 로직, 출력 증거, 예외처리 절차가 모두 포함되도록 자기 조서 문장으로 다시 작성합니다.</p>
+        </article>
+
+        <article class="content-panel">
+          <h2>ITGC vs ITAC 비교 조서</h2>
+          <div class="table-wrap">
+            <table class="audit-table">
+              <thead><tr><th>구분</th><th>ITGC 관점</th><th>ITAC 관점</th></tr></thead>
+              <tbody><tr><th>감사목적</th><td>ITGC가 시스템 통제환경의 신뢰성을 뒷받침하는지 검토한다.</td><td>ITAC가 개별 거래의 완전성·정확성·타당성을 자동으로 보장하는지 검토한다.</td></tr><tr><th>주요증거</th><td>권한승인, 변경관리 티켓, 배포로그, 운영로그, 백업·모니터링 기록</td><td>입력검증 결과, 자동계산 산식, 승인워크플로우 로그, 예외리포트, 인터페이스 대사표</td></tr><tr><th>테스트방법</th><td>표본 기반 문서점검과 로그 검토을 수행하고, 통제 운영기간의 일관성을 검토한다.</td><td>모집단 데이터 재수행, 조건식 검증, 예외 추출, 시스템 결과와 감사인 계산값 비교를 수행한다.</td></tr><tr><th>결론영향</th><td>ITGC 미비가 있으면 ITAC 증거의 신뢰성이 낮아져 추가 실증절차가 필요할 수 있다.</td><td>ITAC 미비가 있으면 특정 계정과목 또는 거래흐름의 왜곡 위험이 증가한다.</td></tr></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="content-panel">
+          <h2>샘플 데이터 필드</h2>
+          <div class="table-wrap">
+            <table class="audit-table">
+              <thead><tr><th>테이블/파일</th><th>주요 필드</th><th>감사 활용 방법</th></tr></thead>
+              <tbody>
+                <tr><th>USER_ROLE</th><td>user_id, role_id, granted_date, revoked_date, approver_id</td><td>권한 승인 적정성, 직무분리 충돌, 퇴사자 권한 잔존 여부를 검토합니다.</td></tr>
+                <tr><th>CHANGE_LOG</th><td>change_id, object_name, before_value, after_value, developer_id, deploy_time</td><td>자동통제 로직 또는 설정값 변경이 승인된 절차를 거쳤는지 검토합니다.</td></tr>
+                <tr><th>TXN_MASTER</th><td>txn_id, txn_date, amount, status, created_by, approved_by</td><td>거래 입력부터 승인, 전표 생성까지 통제 조건이 충족되었는지 추적합니다.</td></tr>
+                <tr><th>EXCEPTION_LOG</th><td>exception_id, rule_id, reason_code, resolved_by, resolved_time</td><td>자동통제가 탐지한 예외가 적시에 검토되고 승인되었는지 검토합니다.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="content-panel">
+          <h2>예외사항 판단 예시</h2>
+          <p>은행입금 인터페이스 오류 18건 중 5건은 수동보정 승인서가 없고, 보정자가 ERP 수금전표 수정 권한도 보유하고 있습니다. 수금 완전성과 권한분리 측면에서 추가 테스트가 필요합니다.</p>
+          <p>조서 결론은 “문제가 있다”가 아니라 “어떤 통제가, 어느 기간에, 어떤 모집단에서, 어떤 재무제표 주장에 영향을 주며, 감사인이 어떤 추가절차를 수행해야 하는지”까지 연결해야 합니다.</p>
+        </article>
+
+        <article class="content-panel">
+          <h2>교육 산출물</h2>
+          <ul>
+            <li>ITAC 감사계획 메모와 시스템·데이터 흐름도</li>
+            <li>ITGC-ITAC 의존관계 매트릭스</li>
+            <li>자동통제 테스트 조서와 재수행 결과표</li>
+            <li>예외사항 원인분석 및 영향도 평가표</li>
+            <li>개선권고안, 경영진 답변 초안, 후속점검 체크리스트</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>Audit<span>Secu</span> Academy</strong>
+        <p>회계감사, 내부회계관리, 전산감사, 정보보안 감사 영역을 통합한 실무 중심 교육 플랫폼</p>
+      </div>
+      <div class="footer-links">
+        <a href="../a/index.html#curriculum">교육과정</a>
+        <a href="../a/index.html#contact">상담</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../a/js/main.js"></script>
+</body>
+</html>
