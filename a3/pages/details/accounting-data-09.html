@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회계감사 시험 예제 전산화 | AuditSecu Academy</title>
+  <meta name="description" content="회계감사 시험 예제 전산화 세부 교육 페이지" />
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../index.html">Audit<span>Secu</span> Academy</a>
+      <button class="nav-toggle" type="button" aria-label="메뉴 열기" data-nav-toggle>☰</button>
+      <nav class="site-nav" data-nav>
+        <a href="../../index.html#curriculum">8단계 커리큘럼</a>
+        <a href="../../pages/ai-ocr.html">AI OCR 제작</a>
+        <a href="../../pages/case-audit.html">종합 케이스</a>
+        <a href="../../index.html#contact">교육 문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-title">
+        <div class="page-top">
+          <a class="back-link" href="../accounting-data.html">← 회계 데이터 이해로 돌아가기</a>
+          <a class="back-link" href="../../index.html#curriculum">전체 커리큘럼</a>
+        </div>
+        <h1>09. 회계감사 시험 예제 전산화</h1>
+        <p>회계감사 시험형 문제를 실제 전산감사 절차로 바꾸는 연습입니다. 서술형 답안을 데이터 요청, 테스트 로직, 조서 산출물로 전환합니다.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container detail-content wide-detail">
+        <article class="content-panel highlight-panel">
+          <h2>실습 시나리오</h2>
+          <p>시험 문제에서는 매출채권 확인, 재고 실사, 비용 컷오프, 권한 분리 같은 주제가 서술형으로 제시됩니다. 실무에서는 이 내용을 데이터 기반 감사 프로그램으로 바꿔야 합니다.</p>
+          <p><strong>핵심 감사위험:</strong> 이론적 답안은 알고 있지만 실제 데이터 필드, 테스트 조건, 산출물로 전환하지 못해 현장 적용이 어려운 위험입니다.</p>
+        </article>
+
+        <div class="compare-grid">
+          <article class="content-panel">
+            <h2>일반 회계감사 실습</h2>
+            <p>감사인이 실제 조서를 작성한다는 전제로 증빙 확인, 인터뷰, 표본 검토, 결론 작성까지 수행합니다.</p>
+            <ul><li>시험 예제의 조건에서 경영진 주장, 감사위험, 필요한 감사절차를 표시합니다.</li><li>일반감사 답안 형식으로 확인, 관찰, 질문, 재계산, 분석적 절차를 정리합니다.</li><li>각 절차별 필요한 증빙과 조서 제목을 붙입니다.</li><li>감사 결론을 쓰기 위해 어떤 오류가 발견되면 어떤 후속절차가 필요한지 작성합니다.</li><li>수강생은 시험형 답안을 일반감사 조서 목차로 전환합니다.</li></ul>
+          </article>
+          <article class="content-panel">
+            <h2>전산감사 실습</h2>
+            <p>같은 감사위험을 데이터 관점으로 바꾸어 원천 테이블, 로그, 마스터, 예외 조건을 활용합니다.</p>
+            <ul><li>시험 예제의 감사절차를 데이터 필드와 조건식으로 번역합니다.</li><li>예를 들어 매출 컷오프 문제는 ship_date, invoice_date, posting_date, period 필드 비교로 전환합니다.</li><li>권한 분리 문제는 사용자, 역할, 승인 로그, 전표 로그의 조인으로 전환합니다.</li><li>각 테스트마다 데이터 요청 항목, 예외 조건, 결과 컬럼, 후속 확인 절차를 정의합니다.</li><li>수강생은 시험 예제 3개를 전산감사 테스트 설계서로 바꿉니다.</li></ul>
+          </article>
+        </div>
+
+        <article class="content-panel">
+          <h2>일반감사 vs 전산감사 비교 포인트</h2>
+          <div class="table-wrap">
+            <table class="audit-table">
+              <thead><tr><th>구분</th><th>일반 회계감사</th><th>전산감사</th></tr></thead>
+              <tbody><tr><th>학습 방식</th><td>일반감사는 이론과 조서 문구를 먼저 익힙니다.</td><td>전산감사는 같은 이론을 데이터 구조와 테스트 조건으로 구현합니다.</td></tr><tr><th>답안 형태</th><td>위험, 절차, 증거, 결론의 서술형 답안입니다.</td><td>요청 데이터, 쿼리 조건, 예외 리스트, 후속 절차의 설계서입니다.</td></tr><tr><th>실무 연결</th><td>감사 기준을 이해하는 데 강점이 있습니다.</td><td>현장 자동화와 반복 테스트로 연결하기 쉽습니다.</td></tr></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="content-panel">
+          <h2>실습 데이터 예시</h2>
+          <p>수업에서는 아래와 같은 필드를 가진 샘플 CSV 또는 엑셀 파일을 사용합니다. 데이터는 회사 실무 자료와 유사한 구조로 만들고, 일부 오류를 의도적으로 심어 비교 실습을 진행합니다.</p>
+          <ul class="code-list"><li><code>EXAM_CASE: topic, assertion, risk, general_procedure</code></li><li><code>TEST_DESIGN: data_field, condition, exception_output, follow_up</code></li><li><code>QUERY_RESULT: case_id, exception_count, sample_needed, conclusion</code></li></ul>
+        </article>
+
+        <article class="content-panel practice-flow">
+          <h2>수업 진행 흐름</h2>
+          <ol>
+            <li><strong>이슈 읽기:</strong> 회계감사 시험형 문제 또는 현업 시나리오를 읽고 감사위험을 표시합니다.</li>
+            <li><strong>일반감사 설계:</strong> 필요한 증빙, 표본 선정 기준, 인터뷰 질문, 조서 결론 문구를 작성합니다.</li>
+            <li><strong>데이터 설계:</strong> 필요한 테이블과 필드를 정의하고, 누락되면 어떤 분석이 불가능한지 설명합니다.</li>
+            <li><strong>예외 추출:</strong> 전체 모집단에서 규칙 기반 예외를 만들고 일반감사 표본과 비교합니다.</li>
+            <li><strong>통합 결론:</strong> 증빙 확인 결과와 데이터 분석 결과가 서로 맞는지 확인한 뒤 최종 발견사항을 정리합니다.</li>
+          </ol>
+        </article>
+
+        <article class="content-panel">
+          <h2>수업 산출물</h2>
+          <ul><li>시험 예제 분석표</li><li>일반감사 답안형 조서</li><li>전산감사 테스트 설계서</li><li>예외 결과 해석 메모</li></ul>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>Audit<span>Secu</span> Academy</strong>
+        <p>회계·내부회계·전산감사·정보보안 감사를 연결하는 실무형 교육 사이트</p>
+      </div>
+      <div class="footer-links">
+        <a href="../../index.html#curriculum">커리큘럼</a>
+        <a href="../../index.html#contact">문의</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
