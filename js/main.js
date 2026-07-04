@@ -1,0 +1,2 @@
+const toggle=document.querySelector('.menu-toggle');const menu=document.querySelector('.menu');toggle?.addEventListener('click',()=>menu?.classList.toggle('show'));
+const search=document.querySelector('[data-search]');if(search){search.addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('[data-topic-card]').forEach(card=>{card.style.display=card.textContent.toLowerCase().includes(q)?'grid':'none';});});}
