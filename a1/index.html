@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 전산감사 실무 아카데미 | AuditSecu Academy</title>
+  <meta name="description" content="8단계 실무 커리큘럼 기반 AI 전산감사 학원 홈페이지" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Audit<span>Secu</span> Academy</a>
+      <button class="nav-toggle" type="button" aria-label="메뉴 열기" data-nav-toggle>☰</button>
+      <nav class="site-nav" data-nav>
+        <a href="index.html#curriculum">8단계 커리큘럼</a>
+        <a href="pages/ai-ocr.html">AI OCR 제작</a>
+        <a href="pages/case-audit.html">종합 케이스</a>
+        <a href="index.html#contact">교육 문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>회계감사 시험 예제부터<br/>AI OCR 회계 프로그램 운영감사까지</h1>
+          <p class="hero-copy">8단계 실무 커리큘럼을 각각 독립 페이지로 구성했습니다. 각 단계 아래에는 실제 수업에서 사용할 세부 교육 페이지가 연결됩니다.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#curriculum">8단계 보기</a>
+            <a class="btn secondary" href="pages/ai-ocr.html">AI OCR 제작 과정</a>
+          </div>
+        </div>
+        <aside class="hero-panel">
+          <h2>사이트 구성</h2>
+          <ul>
+            <li>메인 index 페이지</li>
+            <li>8단계 과정 소개 페이지</li>
+            <li>77개 세부 교육 내용 페이지</li>
+            <li>검색·필터용 공통 JS</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="curriculum">
+      <div class="container">
+        <div class="section-head">
+          <h2>8단계 실무 커리큘럼</h2>
+          <p>각 카드를 누르면 단계별 상세 페이지와 하위 교육 페이지로 이동합니다.</p>
+        </div>
+        <div class="stage-grid"><a class="stage-card" href="pages/accounting-data.html">
+  <b>01</b><h3>회계 데이터 이해</h3><p>CPA 회계감사형 예제를 일반 감사와 전산감사 관점으로 비교</p><small>10개 세부 교육 페이지</small>
+</a>
+<a class="stage-card" href="pages/icfr.html">
+  <b>02</b><h3>내부회계관리</h3><p>내부회계관리 조서형 실습 10개</p><small>10개 세부 교육 페이지</small>
+</a>
+<a class="stage-card" href="pages/ai-ocr.html">
+  <b>03</b><h3>AI OCR 회계 자동화</h3><p>3개월 매일 개발형 AI OCR 회계 프로그램 제작</p><small>12개 세부 교육 페이지</small>
+</a>
+<a class="stage-card" href="pages/itgc-itac.html">
+  <b>04</b><h3>ITGC &amp; ITAC</h3><p>자동통제 중심 ITAC 심화 과정</p><small>10개 세부 교육 페이지</small>
+</a>
+<a class="stage-card" href="pages/data-audit.html">
+  <b>05</b><h3>전산감사 데이터 분석</h3><p>SQL·JSON·Linux 로그·SAP 데이터 기반 감사 분석</p><small>10개 세부 교육 페이지</small>
+</a>
+<a class="stage-card" href="pages/security-audit.html">
+  <b>06</b><h3>정보보안 회계 시스템 감사</h3><p>정보보안기사 기반 공격·방어 감사 케이스</p><small>10개 세부 교육 페이지</small>
+</a>
+<a class="stage-card" href="pages/case-audit.html">
+  <b>07</b><h3>종합 케이스 감사</h3><p>AI OCR 회계 프로그램 1년 운영 취약점 점검</p><small>10개 세부 교육 페이지</small>
+</a>
+<a class="stage-card" href="pages/career.html">
+  <b>08</b><h3>커리어 &amp; 포트폴리오</h3><p>교육 산출물을 취업·이직 포트폴리오로 전환</p><small>5개 세부 교육 페이지</small>
+</a></div>
+      </div>
+    </section>
+
+    <section class="section alt" id="contact">
+      <div class="container contact-box">
+        <div>
+          <h2>교육 과정 문의</h2>
+          <p>정적 사이트에서도 화면 확인이 가능하도록 로컬 확인용 폼으로 구성했습니다. 실제 전송은 Supabase 또는 Formspree 같은 백엔드 연결 시 활성화하면 됩니다.</p>
+        </div>
+        <form class="contact-form" data-contact-form>
+          <input type="text" name="name" placeholder="이름 / 회사명" required />
+          <input type="email" name="email" placeholder="이메일" required />
+          <select name="type" required>
+            <option value="">문의 유형</option>
+            <option>개인 수강</option><option>기업 교육</option><option>학원 제휴</option><option>플랫폼 도입</option>
+          </select>
+          <textarea name="message" rows="5" placeholder="희망 과정, 일정, 인원, 문의 내용을 입력하세요"></textarea>
+          <button class="btn primary" type="submit">문의 내용 확인</button>
+          <p class="form-result" data-form-result></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>Audit<span>Secu</span> Academy</strong>
+        <p>회계·내부회계·전산감사·정보보안 감사를 연결하는 실무형 교육 사이트</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html#curriculum">커리큘럼</a>
+        <a href="index.html#contact">문의</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
