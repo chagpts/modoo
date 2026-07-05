@@ -15,6 +15,35 @@
   <link rel="stylesheet" href="css/demo.css" />
   <link rel="stylesheet" href="css/footer.css" />
   <link rel="stylesheet" href="css/responsive.css" />
+
+  <style>
+    .security-check-section { background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%); }
+    .security-workbench { display: grid; grid-template-columns: 0.95fr 1.35fr; gap: 28px; align-items: stretch; }
+    .security-panel, .security-console { background: #fff; border: 1px solid rgba(22, 36, 64, 0.10); border-radius: 24px; box-shadow: 0 18px 55px rgba(18, 38, 63, 0.08); padding: 28px; }
+    .security-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(40, 108, 255, 0.10); color: #2357d6; font-weight: 700; font-size: 13px; margin-bottom: 14px; }
+    .security-panel h3 { font-size: 26px; line-height: 1.35; margin-bottom: 12px; }
+    .security-panel p { color: #5d6b82; line-height: 1.75; }
+    .security-files { display: grid; gap: 12px; margin: 22px 0; }
+    .security-file { border: 1px solid rgba(22, 36, 64, 0.10); border-radius: 16px; padding: 15px 16px; background: #f9fbff; }
+    .security-file b { display: block; margin-bottom: 6px; color: #17213a; }
+    .security-file span { color: #65748b; font-size: 14px; line-height: 1.55; }
+    .security-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .security-tab { padding: 9px 12px; border-radius: 999px; background: #eef3ff; color: #2454c6; font-size: 13px; font-weight: 700; }
+    .code-review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+    .code-box { border-radius: 18px; overflow: hidden; border: 1px solid rgba(22, 36, 64, 0.12); background: #101828; }
+    .code-box.safe { background: #0f241d; }
+    .code-title { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: rgba(255,255,255,0.08); color: #fff; font-size: 13px; font-weight: 700; }
+    .code-title span { font-size: 12px; opacity: 0.85; }
+    .code-box pre { margin: 0; padding: 16px; color: #e7edf7; font-size: 12.5px; line-height: 1.65; overflow-x: auto; white-space: pre; }
+    .security-findings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+    .security-finding { border: 1px solid rgba(22, 36, 64, 0.10); border-radius: 16px; padding: 16px; background: #fff; }
+    .security-finding span { display: inline-block; font-size: 12px; font-weight: 800; color: #d14343; margin-bottom: 8px; }
+    .security-finding strong { display: block; color: #17213a; margin-bottom: 8px; }
+    .security-finding p { color: #66758c; font-size: 13.5px; line-height: 1.6; }
+    .security-report { margin-top: 18px; padding: 18px; border-radius: 18px; background: #f6f8fc; border: 1px solid rgba(22, 36, 64, 0.10); color: #334155; line-height: 1.75; }
+    .security-report b { color: #17213a; }
+    @media (max-width: 980px) { .security-workbench, .code-review-grid, .security-findings { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
   <header>
@@ -27,6 +56,7 @@
           <li><a href="#platform">플랫폼</a></li>
           <li><a href="#usecases">적용 영역</a></li>
           <li><a href="#capabilities">핵심 기능</a></li>
+          <li><a href="#security-check">보안 점검</a></li>
           <li><a href="#enablement">교육·도입</a></li>
           <li><a href="#deployment">도입 방식</a></li>
           <li><a href="#contact">상담 문의</a></li>
@@ -49,8 +79,7 @@
             <span class="hero-seq delay-4">업무 표준화</span>
           </h1>
           <p class="hero-desc hero-seq delay-5">
-            AuditSecu는 전표, 증빙, 승인 이력, 권한표, ERP 접속 로그를 통합 분석하여
-            회계 오류, 이상거래, 내부통제 미비, 접근권한 위험을 선별하는 AI 기반 업무 플랫폼입니다.
+            AuditSecu는 ITGC 및 ITAC 관점에서 전표, 증빙, 승인 이력, 권한표, ERP 접속 로그 등 주요 회계·IT 통제 데이터를 통합 분석하여 회계 오류, 이상거래, 승인 통제 미비, 접근권한 위험, 시스템 사용 이상 징후를 선별하는 AI 기반 내부통제·감사 업무 플랫폼입니다.
           </p>
           <div class="hero-actions hero-seq delay-6">
             <a href="#platform" class="btn-primary">플랫폼 개요</a>
@@ -153,73 +182,213 @@
     <section id="demo" class="section-padding demo-section">
       <div class="container">
         <div class="section-head reveal">
-          <h2>대표 샘플: 대출 계약서와 ERP 로그를 연결한 내부회계 점검</h2>
-          <p>문서 OCR, 회계처리 검토, 접근통제 점검, 내부회계관리 조서와 보고서 초안까지 하나의 업무 흐름으로 보여줍니다.</p>
+          <h2>AI Audit Workbench: 대출 계약서 업로드부터 내부회계 보고서까지</h2>
+          <p>
+            대출 계약서 PDF를 업로드하면 AI OCR이 계약 조건을 읽고, 회계처리 분개와 재무제표 반영 내역을 자동으로 구성합니다.
+            이후 이자율 재계산, 기간 귀속 Cut-off, 승인·권한 통제, ERP 로그 점검을 거쳐 전산감사 조서와 내부회계관리 보고서 초안까지 생성합니다.
+          </p>
         </div>
 
         <div class="sample-shell reveal">
           <div class="sample-left">
             <div class="sample-case-title">
-              <span>Sample Case</span>
-              <h3>운영자금 대출 실행 및 시스템 접근 이력 점검</h3>
-              <p>대출 계약서 PDF와 ERP 접속 로그를 함께 분석하여 회계 반영의 적정성, 승인·권한 통제, 내부회계관리 문서화까지 검토합니다.</p>
+              <span>AI Audit Workbench</span>
+              <h3>대출 계약서 기반 회계처리 및 내부통제 점검</h3>
+              <p>
+                운영자금 대출 계약서 PDF를 입력하면 계약 주요 조건을 자동 추출하고,
+                분개 생성, 손익계산서·재무상태표 반영, 통제 취약점 점검, 감사 보고서 작성까지
+                하나의 워크벤치에서 순차적으로 확인할 수 있습니다.
+              </p>
             </div>
 
             <div class="sample-inputs">
               <div class="sample-file">
                 <b>loan_agreement.pdf</b>
-                <span>대출금 5억원 · 연 5.2% · 만기 3년 · 실행일 2026.06.29</span>
+                <span>대출금 5억원 · 연 5.2% · 만기 3년 · 실행일 2026.06.29 · 매월 이자 지급</span>
               </div>
               <div class="sample-file">
-                <b>erp_access_log.csv</b>
-                <span>계약 등록, 전표 생성, 승인 변경, 관리자 접속 이력</span>
+                <b>erp_journal_log.csv</b>
+                <span>전표 생성, 결재 승인, 전표 수정, 마감일 이후 입력 이력</span>
+              </div>
+              <div class="sample-file">
+                <b>access_control_log.csv</b>
+                <span>ERP 접속 로그, 권한 변경, 관리자 계정 사용 이력</span>
               </div>
             </div>
 
-            <button class="btn-primary" id="runDemo" type="button">샘플 분석 실행</button>
+            <button class="btn-primary" id="runDemo" type="button">AI 분석 실행</button>
           </div>
 
           <div class="sample-console">
-            <div class="demo-header"><strong>AI Audit Workbench</strong><span id="demoStatus">Ready</span></div>
+            <div class="demo-header">
+              <strong>AI Audit Workbench</strong>
+              <span id="demoStatus">Ready</span>
+            </div>
 
-            <div class="sample-pipeline" aria-label="샘플 처리 단계">
-              <div class="pipeline-step active"><b>01</b><span>AI OCR</span></div>
-              <div class="pipeline-step"><b>02</b><span>회계처리 검토</span></div>
-              <div class="pipeline-step"><b>03</b><span>통제·취약점 점검</span></div>
-              <div class="pipeline-step"><b>04</b><span>조서·보고서 생성</span></div>
+            <div class="sample-pipeline" aria-label="AI Audit Workbench 처리 단계">
+              <div class="pipeline-step active"><b>01</b><span>계약서 OCR</span></div>
+              <div class="pipeline-step"><b>02</b><span>회계 분개</span></div>
+              <div class="pipeline-step"><b>03</b><span>재무제표 반영</span></div>
+              <div class="pipeline-step"><b>04</b><span>통제 점검</span></div>
+              <div class="pipeline-step"><b>05</b><span>보고서 생성</span></div>
             </div>
 
             <div class="sample-results" id="riskResults">
               <article>
-                <span>OCR 추출</span>
+                <span>AI OCR 추출</span>
                 <strong>대기</strong>
-                <p>계약금액, 이자율, 만기, 실행일, 상환 조건</p>
+                <p>대출금액, 실행일, 만기일, 이자율, 상환 조건, 담보·약정 조항 추출</p>
               </article>
+
               <article>
-                <span>회계처리 검토</span>
+                <span>회계처리 분개</span>
                 <strong>대기</strong>
-                <p>차입금 인식, 이자비용 계산, 유동·비유동 분류</p>
+                <p>차입금 인식, 현금 유입, 발생 이자비용, 미지급이자 분개 제안</p>
               </article>
+
               <article>
-                <span>통제·취약점 점검</span>
+                <span>재무제표 반영</span>
                 <strong>대기</strong>
-                <p>승인권한, 관리자 접속, 전표 변경 이력</p>
+                <p>손익계산서 이자비용, 재무상태표 장기차입금 및 미지급이자 반영</p>
               </article>
+
               <article>
-                <span>산출물</span>
+                <span>통제 취약점 점검</span>
                 <strong>대기</strong>
-                <p>내부회계관리 조서, 예외 요약, 개선 권고 보고서</p>
+                <p>이자율 재계산, Cut-off, 승인권한, 전표 수정, 관리자 접속 이력 점검</p>
+              </article>
+
+              <article>
+                <span>감사 산출물</span>
+                <strong>대기</strong>
+                <p>전산감사 조서, 내부회계관리 검토 보고서, 예외사항 및 개선 권고 생성</p>
               </article>
             </div>
 
             <div class="sample-output" id="reportPreview">
-              샘플 분석을 실행하면 AI가 문서와 로그에서 핵심 필드를 추출하고, 회계처리 검토 결과와 통제 점검 의견을 산출합니다.
+              대출 계약서 PDF를 업로드하면 AI가 계약 조건을 읽고, 회계처리와 재무제표 반영 결과를 제시합니다.
+              이후 이자 재계산, 기간 귀속, 승인·권한 통제, ERP 로그 이상 여부를 점검하여 감사 조서와 내부회계관리 보고서 초안을 생성합니다.
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <section id="security-check" class="section-padding security-check-section">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>AI Security Workbench: 회계 시스템 SQL Injection 취약점 점검</h2>
+          <p>
+            회계 시스템의 소스코드와 변경 이력을 업로드하면 AI가 데이터베이스 조회 로직을 점검하고,
+            사용자 입력값이 문자열 결합 방식으로 SQL에 반영되는 취약 코드를 식별합니다.
+            발견된 취약점은 영향 범위, 통제 미비 원인, 개선 코드, 전산감사 및 내부회계관리 보고서 형태로 정리됩니다.
+          </p>
+        </div>
+
+        <div class="security-workbench reveal">
+          <div class="security-panel">
+            <span class="security-badge">Information Security Control Test</span>
+            <h3>회계 시스템 코드 보안 점검 시나리오</h3>
+            <p>
+              매입채무 조회 화면의 코드 리뷰 과정에서 PreparedStatement가 아닌 Statement 기반 SQL 문자열 결합 로직이 발견됩니다.
+              AI는 해당 로직이 사용자 입력값을 안전하게 바인딩하지 않아 SQL Injection 위험이 있다고 판단하고,
+              접근통제·변경관리·애플리케이션 통제 관점의 취약점으로 분류합니다.
+            </p>
+
+            <div class="security-files">
+              <div class="security-file">
+                <b>AccountPayableSearch.java</b>
+                <span>거래처명, 전표번호, 지급상태를 기준으로 매입채무 전표를 조회하는 회계 시스템 코드</span>
+              </div>
+              <div class="security-file">
+                <b>change_request_2026_041.json</b>
+                <span>조회 조건 추가 배포 요청, 코드 리뷰 승인자, 운영 반영 일시, 테스트 증적</span>
+              </div>
+              <div class="security-file">
+                <b>db_access_log.csv</b>
+                <span>회계 DB 조회 이력, 관리자 계정 사용, 비정상 대량 조회 패턴</span>
+              </div>
+            </div>
+
+            <button class="btn-primary" type="button">보안 취약점 분석 실행</button>
+          </div>
+
+          <div class="security-console">
+            <div class="demo-header">
+              <strong>AI Security Workbench</strong>
+              <span>High Risk Finding</span>
+            </div>
+
+            <div class="security-tabs" aria-label="정보보안 취약점 점검 단계">
+              <span class="security-tab">01 코드 수집</span>
+              <span class="security-tab">02 취약 패턴 탐지</span>
+              <span class="security-tab">03 영향 범위 분석</span>
+              <span class="security-tab">04 개선 코드 제안</span>
+              <span class="security-tab">05 감사 보고서 생성</span>
+            </div>
+
+            <div class="code-review-grid">
+              <div class="code-box">
+                <div class="code-title">취약 코드 <span>Statement 사용</span></div>
+                <pre><code>String vendor = request.getParameter("vendor");
+String status = request.getParameter("status");
+
+Statement stmt = connection.createStatement();
+String sql = "SELECT invoice_no, vendor_name, amount "
+           + "FROM ap_invoice "
+           + "WHERE vendor_name = '" + vendor + "' "
+           + "AND payment_status = '" + status + "'";
+
+ResultSet rs = stmt.executeQuery(sql);</code></pre>
+              </div>
+
+              <div class="code-box safe">
+                <div class="code-title">개선 코드 <span>PreparedStatement 적용</span></div>
+                <pre><code>String vendor = request.getParameter("vendor");
+String status = request.getParameter("status");
+
+String sql = "SELECT invoice_no, vendor_name, amount "
+           + "FROM ap_invoice "
+           + "WHERE vendor_name = ? "
+           + "AND payment_status = ?";
+
+PreparedStatement pstmt = connection.prepareStatement(sql);
+pstmt.setString(1, vendor);
+pstmt.setString(2, status);
+
+ResultSet rs = pstmt.executeQuery();</code></pre>
+              </div>
+            </div>
+
+            <div class="security-findings">
+              <article class="security-finding">
+                <span>Critical</span>
+                <strong>SQL Injection 가능성</strong>
+                <p>사용자 입력값이 SQL 문자열에 직접 결합되어 회계 DB 조회 조건이 변조될 가능성이 있습니다.</p>
+              </article>
+              <article class="security-finding">
+                <span>ITGC</span>
+                <strong>변경관리 통제 미비</strong>
+                <p>운영 반영 전 보안 코드 리뷰와 취약점 점검 증적이 충분하지 않은 것으로 분류됩니다.</p>
+              </article>
+              <article class="security-finding">
+                <span>ITAC</span>
+                <strong>애플리케이션 통제 위험</strong>
+                <p>매입채무 조회 화면에서 승인되지 않은 데이터 조회 또는 조건 우회 위험이 발생할 수 있습니다.</p>
+              </article>
+            </div>
+
+            <div class="security-report">
+              <b>AI 보고서 초안</b><br />
+              매입채무 조회 모듈에서 PreparedStatement가 아닌 Statement 기반 SQL 실행 로직이 확인되었습니다.
+              사용자 입력값이 바인딩 처리 없이 SQL 문자열에 결합되어 SQL Injection 위험이 존재하므로,
+              PreparedStatement 적용, 입력값 검증, 최소권한 DB 계정 사용, 배포 전 정적분석 및 코드 리뷰 승인 절차 강화를 권고합니다.
+              본 사항은 전산감사 조서상 애플리케이션 보안 취약점 및 내부회계관리제도상 IT 일반통제·응용통제 보완 필요 항목으로 보고됩니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <section id="enablement" class="section-padding education-section">
       <div class="container">
         <div class="section-head reveal">
