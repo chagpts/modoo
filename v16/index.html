@@ -42,7 +42,20 @@
     .security-finding p { color: #66758c; font-size: 13.5px; line-height: 1.6; }
     .security-report { margin-top: 18px; padding: 18px; border-radius: 18px; background: #f6f8fc; border: 1px solid rgba(22, 36, 64, 0.10); color: #334155; line-height: 1.75; }
     .security-report b { color: #17213a; }
-    @media (max-width: 980px) { .security-workbench, .code-review-grid, .security-findings { grid-template-columns: 1fr; } }
+    .impact-panel { margin-top: 18px; border: 1px solid rgba(209, 67, 67, 0.18); border-radius: 20px; overflow: hidden; background: #fffafa; }
+    .impact-head { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 16px 18px; background: rgba(209, 67, 67, 0.08); }
+    .impact-head strong { color: #17213a; }
+    .impact-head span { color: #d14343; font-size: 12px; font-weight: 800; }
+    .impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .impact-card { padding: 18px; border-top: 1px solid rgba(22, 36, 64, 0.08); }
+    .impact-card + .impact-card { border-left: 1px solid rgba(22, 36, 64, 0.08); }
+    .impact-card h4 { margin: 0 0 12px; color: #17213a; font-size: 15px; }
+    .impact-row { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px dashed rgba(22, 36, 64, 0.12); color: #526175; font-size: 13.5px; }
+    .impact-row:last-child { border-bottom: 0; }
+    .impact-row b { color: #17213a; }
+    .impact-row.warning b { color: #d14343; }
+    .impact-note { padding: 14px 18px; border-top: 1px solid rgba(22, 36, 64, 0.08); color: #5d6b82; font-size: 13.5px; line-height: 1.65; background: #ffffff; }
+    @media (max-width: 980px) { .security-workbench, .code-review-grid, .security-findings, .impact-grid { grid-template-columns: 1fr; } .impact-card + .impact-card { border-left: 0; } }
   </style>
 </head>
 <body>
@@ -291,8 +304,8 @@
             <h3>회계 시스템 코드 보안 점검 시나리오</h3>
             <p>
               매입채무 조회 화면의 코드 리뷰 과정에서 PreparedStatement가 아닌 Statement 기반 SQL 문자열 결합 로직이 발견됩니다.
-              AI는 해당 로직이 사용자 입력값을 안전하게 바인딩하지 않아 SQL Injection 위험이 있다고 판단하고,
-              접근통제·변경관리·애플리케이션 통제 관점의 취약점으로 분류합니다.
+              AI는 해당 로직이 단순 조회 오류에 그치지 않고, 권한 우회와 데이터 변조 리스크로 연결될 수 있다고 판단합니다.
+              특히 차입금, 매입채무, 미지급비용 등 재무상태표 계정이 승인 절차 없이 변경될 가능성을 ITGC·ITAC 관점의 중대 취약점으로 분류합니다.
             </p>
 
             <div class="security-files">
@@ -322,9 +335,9 @@
             <div class="security-tabs" aria-label="정보보안 취약점 점검 단계">
               <span class="security-tab">01 코드 수집</span>
               <span class="security-tab">02 취약 패턴 탐지</span>
-              <span class="security-tab">03 영향 범위 분석</span>
-              <span class="security-tab">04 개선 코드 제안</span>
-              <span class="security-tab">05 감사 보고서 생성</span>
+              <span class="security-tab">03 권한 우회 분석</span>
+              <span class="security-tab">04 재무제표 영향 분석</span>
+              <span class="security-tab">05 보고서 생성</span>
             </div>
 
             <div class="code-review-grid">
@@ -373,16 +386,47 @@ ResultSet rs = pstmt.executeQuery();</code></pre>
               </article>
               <article class="security-finding">
                 <span>ITAC</span>
-                <strong>애플리케이션 통제 위험</strong>
-                <p>매입채무 조회 화면에서 승인되지 않은 데이터 조회 또는 조건 우회 위험이 발생할 수 있습니다.</p>
+                <strong>재무 데이터 무결성 위험</strong>
+                <p>조회 화면 취약점이 권한 우회로 이어질 경우, 승인되지 않은 회계 데이터 변경과 재무제표 왜곡 위험이 발생할 수 있습니다.</p>
               </article>
+            </div>
+
+            <div class="impact-panel">
+              <div class="impact-head">
+                <strong>재무상태표 영향 시뮬레이션</strong>
+                <span>Unauthorized Data Change Scenario</span>
+              </div>
+              <div class="impact-grid">
+                <div class="impact-card">
+                  <h4>정상 반영 금액</h4>
+                  <div class="impact-row"><span>매입채무</span><b>1,240,000,000원</b></div>
+                  <div class="impact-row"><span>미지급비용</span><b>310,000,000원</b></div>
+                  <div class="impact-row"><span>부채총계</span><b>8,760,000,000원</b></div>
+                  <div class="impact-row"><span>자본총계</span><b>5,420,000,000원</b></div>
+                </div>
+                <div class="impact-card">
+                  <h4>변조 가능 시나리오</h4>
+                  <div class="impact-row warning"><span>매입채무</span><b>740,000,000원</b></div>
+                  <div class="impact-row warning"><span>미지급비용</span><b>190,000,000원</b></div>
+                  <div class="impact-row warning"><span>부채총계</span><b>8,140,000,000원</b></div>
+                  <div class="impact-row warning"><span>자본총계</span><b>6,040,000,000원</b></div>
+                </div>
+              </div>
+              <div class="impact-note">
+                AI는 취약한 조회 로직이 서버 권한 오남용 또는 회계 DB 접근권한 우회로 확대될 경우,
+                매입채무와 미지급비용이 과소계상되고 부채총계·자본총계가 왜곡될 수 있다고 표시합니다.
+                이 화면은 공격 방법을 제공하지 않는 감사용 영향도 시뮬레이션입니다.
+              </div>
             </div>
 
             <div class="security-report">
               <b>AI 보고서 초안</b><br />
               매입채무 조회 모듈에서 PreparedStatement가 아닌 Statement 기반 SQL 실행 로직이 확인되었습니다.
-              사용자 입력값이 바인딩 처리 없이 SQL 문자열에 결합되어 SQL Injection 위험이 존재하므로,
-              PreparedStatement 적용, 입력값 검증, 최소권한 DB 계정 사용, 배포 전 정적분석 및 코드 리뷰 승인 절차 강화를 권고합니다.
+              사용자 입력값이 바인딩 처리 없이 SQL 문자열에 결합되어 SQL Injection 위험이 존재하며,
+              해당 취약점은 단순 데이터 조회 위험을 넘어 회계 DB 권한 우회, 승인되지 않은 전표·채무 데이터 변경,
+              재무상태표 계정 왜곡으로 확대될 수 있습니다.
+              PreparedStatement 적용, 입력값 검증, 최소권한 DB 계정 사용, 중요 테이블 변경 차단, 전표 변경 승인 워크플로우,
+              배포 전 정적분석 및 코드 리뷰 승인 절차 강화를 권고합니다.
               본 사항은 전산감사 조서상 애플리케이션 보안 취약점 및 내부회계관리제도상 IT 일반통제·응용통제 보완 필요 항목으로 보고됩니다.
             </div>
           </div>
