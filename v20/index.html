@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AuditSecu | AI Audit Platform</title>
+  <meta name="description" content="회계·감사·보안 리스크를 하나의 흐름으로 점검하는 AI 플랫폼" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="./index.html">Audit<span>Secu</span></a>
+      <ul class="menu" aria-label="주요 메뉴">
+        <li><a href="#platform">Platform</a></li>
+        <li><a href="#cases">Cases</a></li>
+        <li><a href="./audit-simulation-lab.html">AI Lab</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="nav-cta" href="./audit-simulation-lab.html">Demo</a>
+    </div>
+  </nav>
+
+  <main id="home">
+    <section class="hero">
+      <!-- Hero video: put your video file at assets/video/hero.mp4 -->
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="./assets/video/hero.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="kicker">AI Audit · ITGC · ITAC</span>
+          <h1>
+            <span class="hero-line"><span class="hero-chunk keyword" style="--delay:0ms">회계</span><span class="hero-chunk" style="--delay:260ms">·</span><span class="hero-chunk keyword" style="--delay:520ms">감사</span><span class="hero-chunk" style="--delay:780ms">·</span><span class="hero-chunk keyword" style="--delay:1040ms">보안 리스크</span></span>
+            <span class="hero-line"><span class="hero-chunk" style="--delay:1400ms">한 번에 점검합니다.</span></span>
+          </h1>
+          <p class="lead">문서, 전표, 권한, 로그를 연결해 리스크와 감사 근거를 보여줍니다.</p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="./audit-simulation-lab.html">AI Lab 보기</a>
+            <a class="btn-secondary" href="#cases">사례 보기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="platform">
+      <div class="container section-head center reveal">
+        <span class="kicker dark">Platform</span>
+        <h2>감사 흐름을 짧고 명확하게</h2>
+        <p>업로드 → AI 분석 → 통제 점검 → 보고서 초안까지 한 화면에서 연결합니다.</p>
+      </div>
+      <div class="container cards-grid">
+        <article class="card reveal"><b>01</b><h3>문서 분석</h3><p>계약서·증빙에서 핵심 조건을 추출합니다.</p></article>
+        <article class="card reveal"><b>02</b><h3>전표 검토</h3><p>분개, 금액, Cut-off 오류를 확인합니다.</p></article>
+        <article class="card reveal"><b>03</b><h3>통제 점검</h3><p>승인, 권한, 로그 이상을 탐지합니다.</p></article>
+        <article class="card reveal"><b>04</b><h3>보고서 생성</h3><p>근거와 개선 과제를 정리합니다.</p></article>
+      </div>
+    </section>
+
+    <section class="section dark-section" id="cases">
+      <div class="container split reveal">
+        <div>
+          <span class="kicker">Simulation</span>
+          <h2>사람들이 바로 이해하는 데모 페이지</h2>
+          <p>대출 계약서, 세금계산서, 영수증, 권한표, 접속 로그를 선택해 AI 감사 흐름을 실행해볼 수 있습니다.</p>
+        </div>
+        <a class="btn-primary" href="./audit-simulation-lab.html">AI Audit Simulation Lab 열기</a>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container cta-card reveal">
+        <div>
+          <h2>AuditSecu 데모를 시작하세요.</h2>
+          <p>회계 데이터와 IT 통제를 함께 보는 감사 플랫폼입니다.</p>
+        </div>
+        <a class="btn-primary" href="mailto:contact@auditsecu.example">문의하기</a>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-inner">© 2026 AuditSecu</div></footer>
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>
