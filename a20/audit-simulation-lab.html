@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Audit Simulation Lab | AuditSecu</title>
+  <meta name="description" content="문서 유형별 AI OCR, 자동분개, 내부통제 점검, 감사보고서 생성 흐름을 보여주는 AuditSecu 시뮬레이션 페이지입니다." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <style>
+    :root {
+      --bg: #06101f;
+      --panel: rgba(255,255,255,.08);
+      --panel-strong: rgba(255,255,255,.13);
+      --line: rgba(255,255,255,.16);
+      --text: #f6f8ff;
+      --muted: #b9c4d7;
+      --brand: #6ae4ff;
+      --brand-2: #8d7dff;
+      --ok: #61e6a1;
+      --warn: #ffd36a;
+      --danger: #ff8d8d;
+      --shadow: 0 24px 80px rgba(0,0,0,.35);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Pretendard, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(106,228,255,.22), transparent 30%),
+        radial-gradient(circle at 85% 0%, rgba(141,125,255,.26), transparent 28%),
+        linear-gradient(145deg, #030712 0%, #071426 50%, #0b1020 100%);
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(3, 7, 18, .72);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .logo { font-size: 24px; font-weight: 900; letter-spacing: -.04em; }
+    .logo span { color: var(--brand); }
+    .nav-links { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .nav-links a { color: var(--muted); font-weight: 700; font-size: 14px; padding: 10px 12px; border-radius: 999px; }
+    .nav-links a:hover { color: white; background: rgba(255,255,255,.08); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border: 1px solid rgba(255,255,255,.2); border-radius: 999px;
+      padding: 12px 18px; font-weight: 800; cursor: pointer;
+      color: white; background: rgba(255,255,255,.08);
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.32); }
+    .btn-primary { border: 0; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #07101e; box-shadow: 0 16px 36px rgba(106,228,255,.22); }
+    .hero { padding: 76px 0 36px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 34px; align-items: center; }
+    .kicker { display: inline-flex; border: 1px solid rgba(106,228,255,.35); color: #bdf5ff; background: rgba(106,228,255,.09); padding: 8px 12px; border-radius: 999px; font-weight: 800; font-size: 13px; }
+    h1 { margin: 20px 0 18px; font-size: clamp(38px, 6vw, 74px); line-height: 1.02; letter-spacing: -.07em; }
+    h1 span { color: var(--brand); }
+    .hero p { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.75; max-width: 720px; }
+    .hero-actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+    .mini-dashboard { position: relative; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.06)); box-shadow: var(--shadow); padding: 22px; overflow: hidden; }
+    .mini-dashboard::before { content:""; position:absolute; inset:-2px; background: linear-gradient(110deg, transparent, rgba(106,228,255,.16), transparent); transform: translateX(-100%); animation: shine 4s infinite; }
+    @keyframes shine { 45%, 100% { transform: translateX(100%); } }
+    .preview-top, .demo-command { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    .preview-top strong, .demo-command strong { display: block; font-size: 18px; }
+    .preview-top span, .demo-command span { display: block; margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .flow { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 24px; }
+    .flow div { border: 1px solid var(--line); background: rgba(0,0,0,.18); border-radius: 16px; padding: 14px 8px; text-align: center; font-weight: 800; font-size: 13px; }
+    .flow .active { color: #06101f; background: var(--brand); }
+    .stats { position: relative; display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-top: 14px; }
+    .stats div { border: 1px solid var(--line); border-radius: 16px; padding: 16px; background: rgba(255,255,255,.07); }
+    .stats span { display:block; color: var(--muted); font-size: 13px; }
+    .stats b { display:block; margin-top: 6px; font-size: 26px; }
+    .case-demo-section { padding: 42px 0 86px; }
+    .section-head { margin-bottom: 24px; }
+    .section-head h2 { margin: 14px 0 12px; font-size: clamp(28px, 4vw, 46px); line-height: 1.18; letter-spacing: -.05em; }
+    .section-head p { color: var(--muted); line-height: 1.75; max-width: 860px; margin: 0; }
+    .case-demo-shell { border: 1px solid var(--line); border-radius: 30px; padding: 22px; background: rgba(255,255,255,.07); box-shadow: var(--shadow); }
+    .demo-command { border: 1px solid var(--line); border-radius: 22px; padding: 18px; background: rgba(0,0,0,.22); margin-bottom: 16px; }
+    .demo-run-btn { border: 0; border-radius: 999px; padding: 13px 18px; font-weight: 900; color: #07101e; cursor: pointer; background: linear-gradient(135deg, var(--brand), var(--ok)); white-space: nowrap; }
+    .demo-run-btn:disabled { opacity: .65; cursor: progress; }
+    .scenario-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 20px; }
+    .scenario-tab { border: 1px solid var(--line); background: rgba(255,255,255,.08); color: var(--muted); border-radius: 999px; padding: 10px 14px; font-weight: 800; cursor: pointer; }
+    .scenario-tab.active { color: #07101e; border-color: transparent; background: var(--brand); }
+    .case-demo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .case-card { position: relative; min-height: 210px; border: 1px solid var(--line); border-radius: 22px; padding: 18px; background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.055)); overflow: hidden; }
+    .case-card.wide { grid-column: span 2; }
+    .case-card h3 { margin: 0 0 14px; font-size: 18px; letter-spacing: -.03em; }
+    .scan-line { position: absolute; left: 0; right: 0; top: -40px; height: 40px; background: linear-gradient(180deg, transparent, rgba(106,228,255,.34), transparent); opacity: 0; }
+    .case-card.running .scan-line { opacity: 1; animation: scan 1.1s ease-in-out infinite; }
+    @keyframes scan { to { top: 100%; } }
+    .fake-file { display: flex; align-items: center; gap: 14px; border: 1px dashed rgba(255,255,255,.24); border-radius: 18px; padding: 16px; background: rgba(0,0,0,.16); }
+    .fake-file-icon { width: 50px; height: 50px; display: grid; place-items: center; border-radius: 16px; background: rgba(106,228,255,.13); font-size: 26px; }
+    small { color: var(--muted); }
+    .ocr-fields { display: grid; gap: 9px; }
+    .ocr-fields div, .control-list div { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid rgba(255,255,255,.1); padding: 9px 0; color: var(--muted); }
+    .ocr-fields b, .control-list b { color: white; text-align: right; }
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 16px; }
+    th, td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,.1); text-align: left; color: var(--muted); font-size: 14px; }
+    th { color: white; background: rgba(255,255,255,.08); }
+    td.amount, th.amount { text-align: right; color: white; }
+    .report-box { border: 1px solid rgba(255,255,255,.14); background: rgba(0,0,0,.16); border-radius: 18px; padding: 16px; }
+    .report-box p { color: white; line-height: 1.7; margin: 0 0 10px; }
+    .report-box ul { margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8; }
+    .demo-log { margin-top: 12px; border-radius: 16px; padding: 13px; color: #a9ffcf; background: rgba(0,0,0,.32); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.6; white-space: pre-wrap; }
+    .demo-status { position: absolute; right: 16px; bottom: 14px; color: var(--muted); font-size: 12px; font-weight: 800; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 6px 10px; background: rgba(0,0,0,.18); }
+    .case-card.running .demo-status { color: var(--warn); }
+    .case-card.done .demo-status { color: var(--ok); }
+    .footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); }
+    @media (max-width: 900px) {
+      .hero-grid, .case-demo-grid { grid-template-columns: 1fr; }
+      .case-card.wide { grid-column: span 1; }
+      .demo-command { align-items: flex-start; flex-direction: column; }
+      .demo-run-btn { width: 100%; }
+      .flow { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 24px, 1180px); }
+      .nav-inner { height: auto; padding: 14px 0; align-items: flex-start; flex-direction: column; }
+      .hero { padding-top: 42px; }
+      .stats { grid-template-columns: 1fr; }
+      th, td { padding: 10px 8px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="./index.html">Audit<span>Secu</span></a>
+      <div class="nav-links" aria-label="페이지 메뉴">
+        <a href="./index.html">메인으로</a>
+        <a href="#case-demo">시뮬레이션</a>
+        <a href="#run" data-run-case-demo>실행하기</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="kicker">AI Audit Simulation Lab</span>
+          <h1>자료를 넣으면 <span>AI 감사 흐름</span>이 어떻게 진행되는지 보여줍니다.</h1>
+          <p>대출 계약서, 세금계산서, 법인카드 영수증, ERP 권한표, 접속 로그를 선택하면 OCR·필드 추출·자동분개 또는 감사 테스트·통제 점검·보고서 생성까지 한 화면에서 순서대로 시뮬레이션됩니다.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#case-demo">데모 바로 보기</a>
+            <a class="btn" href="./index.html">메인 페이지로 돌아가기</a>
+          </div>
+        </div>
+        <div class="mini-dashboard" aria-label="AI 감사 흐름 미리보기">
+          <div class="preview-top">
+            <div><strong>처리 파이프라인</strong><span>샘플 데이터를 기준으로 실제 작동 흐름을 시각화</span></div>
+            <span class="kicker">LIVE DEMO</span>
+          </div>
+          <div class="flow"><div>파일</div><div>OCR</div><div class="active">통제</div><div>감사</div><div>보고서</div></div>
+          <div class="stats"><div><span>시나리오</span><b>5개</b></div><div><span>결과 산출</span><b>6단계</b></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="case-demo" class="case-demo-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">AI Audit Simulation Lab</span>
+          <h2>문서 유형별 AI OCR → 자동분개/통제 → 감사보고서 시뮬레이션</h2>
+          <p>대출 계약서는 여러 교육 예제 중 하나입니다. 영수증, 세금계산서, 계약서, 권한표, 접속 로그처럼 실무에서 마주치는 자료를 선택하면 케이스별로 다른 회계처리와 통제 점검 결과가 나타납니다.</p>
+        </div>
+
+        <div class="case-demo-shell">
+          <div class="demo-command" id="run">
+            <div>
+              <strong id="caseTitle">샘플 시나리오: 운영자금 대출 계약서 자동 처리</strong>
+              <span id="caseSummary">대출 실행일 2026.06.29 · 원금 500,000,000원 · 연 5.2% · 만기 3년 · 원리금 분개 및 내부통제 검토</span>
+            </div>
+            <button class="demo-run-btn" type="button" data-run-case-demo>선택한 케이스 실행</button>
+          </div>
+
+          <div class="scenario-tabs" role="tablist" aria-label="AI 감사 교육 예제 선택">
+            <button class="scenario-tab active" type="button" data-scenario="loan">대출 계약서</button>
+            <button class="scenario-tab" type="button" data-scenario="invoice">매입 세금계산서</button>
+            <button class="scenario-tab" type="button" data-scenario="receipt">법인카드 영수증</button>
+            <button class="scenario-tab" type="button" data-scenario="access">ERP 권한표</button>
+            <button class="scenario-tab" type="button" data-scenario="log">접속 로그</button>
+          </div>
+
+          <div class="case-demo-grid">
+            <article class="case-card" data-step="1">
+              <div class="scan-line"></div>
+              <h3>1. 교육용 샘플 파일 자동 첨부</h3>
+              <div class="fake-file"><div class="fake-file-icon" id="caseFileIcon">📎</div><div><strong id="caseFileName">loan_agreement_2026.pdf</strong><br /><small id="caseFileMeta">PDF · 8 pages · 첨부 대기</small></div></div>
+              <span class="demo-status">대기 중</span>
+            </article>
+
+            <article class="case-card" data-step="2">
+              <div class="scan-line"></div>
+              <h3>2. AI 추출 / 분석 결과</h3>
+              <div class="ocr-fields" id="caseExtractFields"></div>
+              <span class="demo-status">대기 중</span>
+            </article>
+
+            <article class="case-card wide" data-step="3">
+              <h3>3. 자동 회계처리 또는 감사 테스트 생성</h3>
+              <table class="journal-table" aria-label="자동 처리 테이블"><thead id="caseJournalHead"></thead><tbody id="caseJournalBody"></tbody></table>
+              <span class="demo-status">대기 중</span>
+            </article>
+
+            <article class="case-card" data-step="4">
+              <h3>4. 재무제표 / 위험 대시보드 반영</h3>
+              <table class="fs-table" aria-label="재무제표 및 위험 반영 테이블"><thead><tr><th>항목</th><th class="amount">반영 결과</th></tr></thead><tbody id="caseFsBody"></tbody></table>
+              <span class="demo-status">대기 중</span>
+            </article>
+
+            <article class="case-card" data-step="5">
+              <h3>5. ITGC / ITAC / 내부통제 점검</h3>
+              <div class="control-list" id="caseControlList"></div>
+              <span class="demo-status">대기 중</span>
+            </article>
+
+            <article class="case-card wide" data-step="6">
+              <h3>6. 내부회계관리 보고서 자동 생성</h3>
+              <div class="report-box"><p id="caseReportConclusion"></p><ul id="caseReportBullets"></ul></div>
+              <div class="demo-log" id="caseDemoLog">[대기] 케이스를 선택한 뒤 실행 버튼을 누르면 처리 로그가 표시됩니다.</div>
+              <span class="demo-status">대기 중</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container">© 2026 AuditSecu. AI Audit · ITGC · ITAC · Security Risk Review</div></footer>
+
+  <script>
+    const scenarios = {
+      loan: {
+        title: '샘플 시나리오: 운영자금 대출 계약서 자동 처리',
+        summary: '대출 실행일 2026.06.29 · 원금 500,000,000원 · 연 5.2% · 만기 3년 · 원리금 분개 및 내부통제 검토',
+        icon: '📄', file: 'loan_agreement_2026.pdf', meta: 'PDF · 8 pages · 계약 조건 추출 대기',
+        fields: [['차입처','한빛은행'], ['원금','500,000,000원'], ['이자율','연 5.2%'], ['만기','3년'], ['상환방식','매월 이자 지급']],
+        head: ['일자','차변','대변','금액','AI 판단'],
+        rows: [['2026-06-29','현금및현금성자산','단기차입금','500,000,000','계약 실행일 기준 인식'], ['2026-06-30','이자비용','미지급이자','71,233','일할 계산 필요']],
+        fs: [['부채 증가','500,000,000원'], ['당기 비용 반영','71,233원'], ['위험 등급','중간']],
+        controls: [['승인권한 검토','재무팀장 승인 확인'], ['이자율 재계산','계약서와 ERP 값 일치'], ['Cut-off 점검','월말 미지급이자 반영 필요']],
+        conclusion: 'AI는 계약 조건과 전표 데이터를 비교하여 차입금 인식은 적정하나, 월말 이자비용 Cut-off 검토가 필요한 것으로 판단했습니다.',
+        bullets: ['계약서 원금·이자율·만기 정보가 전표와 일치합니다.', '월말 미지급이자 자동계산 통제의 작동 근거를 추가 확인해야 합니다.', '승인 이력은 존재하지만 위임 승인 여부는 별도 확인 대상입니다.']
+      },
+      invoice: {
+        title: '샘플 시나리오: 매입 세금계산서 자동 검증',
+        summary: '공급가액 18,700,000원 · 부가세 1,870,000원 · 매입채무 인식 및 증빙 중복 여부 검토',
+        icon: '🧾', file: 'purchase_tax_invoice_2026.xml', meta: 'XML/PDF · 전자세금계산서 · 추출 대기',
+        fields: [['공급자','대성소프트'], ['공급가액','18,700,000원'], ['부가세','1,870,000원'], ['작성일자','2026.06.25'], ['품목','ERP 유지보수']],
+        head: ['검증 항목','원천 증빙','ERP 값','결과','AI 판단'],
+        rows: [['공급가액','18,700,000','18,700,000','일치','정상'], ['부가세','1,870,000','1,780,000','불일치','수정 필요'], ['거래처 코드','DS-SW','DS-SW','일치','정상']],
+        fs: [['매입채무','20,570,000원'], ['부가세대급금 차이','90,000원'], ['위험 등급','높음']],
+        controls: [['증빙-전표 대사','부가세 금액 불일치'], ['중복 전표 탐지','동일 공급자·금액 후보 1건'], ['승인 통제','팀장 승인 전표 확인']],
+        conclusion: '세금계산서와 ERP 전표 간 부가세 금액 차이가 발견되어 자동 분개 확정 전 검토가 필요합니다.',
+        bullets: ['부가세대급금 90,000원 차이가 재무제표에 영향을 줄 수 있습니다.', '동일 공급자·유사 금액 전표 1건이 중복 지급 후보로 분류되었습니다.', '승인 전표는 존재하나 금액 수정 후 재승인이 필요합니다.']
+      },
+      receipt: {
+        title: '샘플 시나리오: 법인카드 영수증 비용 처리',
+        summary: '영수증 이미지 OCR · 접대비/복리후생비 분류 · 사용일자와 승인정책 점검',
+        icon: '💳', file: 'corporate_card_receipt.jpg', meta: 'JPG · OCR confidence 97% · 처리 대기',
+        fields: [['가맹점','서울컨퍼런스센터'], ['사용금액','384,000원'], ['사용일시','2026.06.28 22:47'], ['카드 사용자','김민준'], ['추천 계정','접대비']],
+        head: ['일자','추천 계정','차변','대변','금액'],
+        rows: [['2026-06-28','접대비','접대비','미지급금','384,000'], ['2026-06-28','부가세 제외','부가세대급금','미지급금','34,909']],
+        fs: [['비용 증가','349,091원'], ['부가세대급금','34,909원'], ['위험 등급','중간']],
+        controls: [['야간 사용 정책','22:47 사용으로 예외 검토'], ['증빙 첨부','영수증 이미지 확인'], ['사용자 승인','부서장 승인 필요']],
+        conclusion: 'OCR 결과상 금액과 사용처는 식별되었으나, 야간 사용 건으로 비용 성격과 승인 사유 확인이 필요합니다.',
+        bullets: ['정책상 야간 법인카드 사용은 예외 승인 대상입니다.', '접대비 분류가 적정한지 참석자·목적 정보를 추가 확인해야 합니다.', '증빙 이미지는 첨부되어 감사 근거로 연결 가능합니다.']
+      },
+      access: {
+        title: '샘플 시나리오: ERP 권한표 기반 ITGC 점검',
+        summary: '사용자 권한표 업로드 · 퇴사자 계정 · 권한분리 SoD · 관리자 권한 검토',
+        icon: '🔐', file: 'erp_role_matrix.xlsx', meta: 'XLSX · 214 users · 권한 분석 대기',
+        fields: [['전체 사용자','214명'], ['관리자 권한','9명'], ['퇴사자 계정','3명'], ['승인+작성 겸직','8명'], ['운영 DB 권한','4명']],
+        head: ['테스트','대상','예외','위험도','조치'],
+        rows: [['퇴사자 계정','214명','3명','높음','즉시 비활성화'], ['권한분리','전표 담당자','8명','중간','역할 재설계'], ['관리자 권한','IT 운영자','2명','중간','근거 확보']],
+        fs: [['무단 전표 변경 위험','높음'], ['승인 우회 위험','중간'], ['위험 등급','높음']],
+        controls: [['계정 생성/삭제 통제','퇴사자 계정 3건 발견'], ['권한분리 통제','작성자와 승인자 겸직 존재'], ['관리자 접근 통제','운영 DB 직접 접근 가능']],
+        conclusion: '권한표 분석 결과 퇴사자 계정과 권한분리 예외가 확인되어 ITGC 설계 및 운영 개선이 필요합니다.',
+        bullets: ['퇴사자 계정은 회계 데이터 무단 변경 위험과 직접 연결됩니다.', '작성·승인 겸직 권한은 내부회계관리 통제 미비로 분류됩니다.', '관리자 권한 보유자는 정기 검토 및 승인 근거가 필요합니다.']
+      },
+      log: {
+        title: '샘플 시나리오: ERP 접속 로그 이상징후 분석',
+        summary: '접속 로그 CSV · 야간 로그인 · 대량 다운로드 · 마감 후 전표 수정 탐지',
+        icon: '📊', file: 'erp_access_log_2026.csv', meta: 'CSV · 18,420 rows · 로그 분석 대기',
+        fields: [['로그 기간','2026.06.01~06.30'], ['야간 접속','31건'], ['대량 다운로드','5건'], ['마감 후 수정','4건'], ['해외 IP','2건']],
+        head: ['탐지 규칙','발견 건수','대표 사용자','위험도','감사 절차'],
+        rows: [['야간 로그인','31','fin_ops_07','중간','사유 확인'], ['대량 다운로드','5','acct_admin','높음','반출 승인 확인'], ['마감 후 수정','4','closing_mgr','높음','전표 변경 내역 추적']],
+        fs: [['마감 후 변경 위험','높음'], ['데이터 반출 위험','높음'], ['위험 등급','높음']],
+        controls: [['로그 모니터링','이상 패턴 자동 탐지'], ['마감 통제','마감 후 수정 4건 확인'], ['데이터 반출 통제','다운로드 승인 근거 필요']],
+        conclusion: '접속 로그 분석 결과 마감 후 전표 수정과 대량 다운로드가 발견되어 감사 추적 및 승인 근거 확인이 필요합니다.',
+        bullets: ['마감 후 수정 건은 재무제표 왜곡 위험과 연결될 수 있습니다.', '대량 다운로드는 회계 데이터 반출 통제 관점에서 검토해야 합니다.', '해외 IP 접속은 계정 공유 또는 비정상 접근 여부를 확인해야 합니다.']
+      }
+    };
+
+    let current = 'loan';
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => [...document.querySelectorAll(selector)];
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+    function setTable(head, rows) {
+      $('#caseJournalHead').innerHTML = '<tr>' + head.map(h => `<th>${h}</th>`).join('') + '</tr>';
+      $('#caseJournalBody').innerHTML = rows.map(row => '<tr>' + row.map((cell, i) => `<td class="${i === row.length - 2 ? 'amount' : ''}">${cell}</td>`).join('') + '</tr>').join('');
+    }
+    function renderScenario(key) {
+      current = key;
+      const data = scenarios[key];
+      $('#caseTitle').textContent = data.title;
+      $('#caseSummary').textContent = data.summary;
+      $('#caseFileIcon').textContent = data.icon;
+      $('#caseFileName').textContent = data.file;
+      $('#caseFileMeta').textContent = data.meta;
+      $('#caseExtractFields').innerHTML = data.fields.map(([k,v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('');
+      setTable(data.head, data.rows);
+      $('#caseFsBody').innerHTML = data.fs.map(([k,v]) => `<tr><td>${k}</td><td class="amount">${v}</td></tr>`).join('');
+      $('#caseControlList').innerHTML = data.controls.map(([k,v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('');
+      $('#caseReportConclusion').textContent = data.conclusion;
+      $('#caseReportBullets').innerHTML = data.bullets.map(item => `<li>${item}</li>`).join('');
+      $('#caseDemoLog').textContent = '[대기] 케이스를 선택한 뒤 실행 버튼을 누르면 처리 로그가 표시됩니다.';
+      $$('.case-card').forEach(card => { card.classList.remove('running','done'); card.querySelector('.demo-status').textContent = '대기 중'; });
+      $$('.scenario-tab').forEach(tab => tab.classList.toggle('active', tab.dataset.scenario === key));
+    }
+
+    async function runDemo() {
+      const buttons = $$('[data-run-case-demo]');
+      buttons.forEach(btn => btn.disabled = true);
+      const labels = ['샘플 파일 첨부 완료', 'AI OCR 및 필드 추출 완료', '자동 처리/감사 테스트 생성 완료', '재무제표·위험 반영 완료', '통제 점검 완료', '보고서 초안 생성 완료'];
+      const logs = ['파일을 안전한 실습 공간에 첨부했습니다.', '문서에서 핵심 필드와 감사 기준을 추출했습니다.', '시나리오에 맞는 분개 또는 감사 테스트를 생성했습니다.', '금액·권한·로그가 재무보고 위험에 미치는 영향을 계산했습니다.', 'ITGC/ITAC 및 내부통제 예외를 점검했습니다.', '검토자가 사용할 수 있는 보고서 문장을 생성했습니다.'];
+      $('#caseDemoLog').textContent = `[시작] ${scenarios[current].file} 처리 시작`;
+      $$('.case-card').forEach(card => { card.classList.remove('running','done'); card.querySelector('.demo-status').textContent = '대기 중'; });
+      for (let i = 1; i <= 6; i++) {
+        const card = document.querySelector(`[data-step="${i}"]`);
+        card.classList.add('running');
+        card.querySelector('.demo-status').textContent = '처리 중';
+        $('#caseDemoLog').textContent += `\n[${String(i).padStart(2,'0')}] ${logs[i-1]}`;
+        await sleep(650);
+        card.classList.remove('running');
+        card.classList.add('done');
+        card.querySelector('.demo-status').textContent = labels[i-1];
+      }
+      $('#caseDemoLog').textContent += '\n[완료] 감사 시뮬레이션 결과가 생성되었습니다.';
+      buttons.forEach(btn => btn.disabled = false);
+    }
+
+    $$('.scenario-tab').forEach(tab => tab.addEventListener('click', () => renderScenario(tab.dataset.scenario)));
+    $$('[data-run-case-demo]').forEach(btn => btn.addEventListener('click', (event) => { event.preventDefault(); document.querySelector('#case-demo').scrollIntoView({behavior:'smooth'}); runDemo(); }));
+    renderScenario('loan');
+  </script>
+</body>
+</html>
