@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>인증과 계정 잠금 통제 | AuditSecu Academy</title>
+  <meta name="description" content="인증과 계정 잠금 통제 세부 교육과정" />
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../index.html">Audit<span>Secu</span> Academy</a>
+      <button class="nav-toggle" type="button" aria-label="메뉴 표시" data-nav-toggle>☰</button>
+      <nav class="site-nav" data-nav>
+        <a href="../../index.html#curriculum">실무 교육과정</a>
+        <a href="../../pages/synthetic-data.html">데이터셋 구축</a><a href="../../pages/ai-ocr.html">AI OCR 구축</a>
+        <a href="../../pages/case-audit.html">통합 감사 사례</a>
+        <a href="../../index.html#contact">교육 상담</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-title">
+        <div class="page-top">
+          <a class="back-link" href="../security-audit.html">← 정보보안 회계 시스템 감사 과정으로 이동</a>
+          <a class="back-link" href="../../index.html#curriculum">전체 교육과정</a>
+        </div>
+        <h1>07-02. 인증과 계정 잠금 통제</h1>
+        <p>로그인 정책과 세션 통제를 감사 관점에서 점검합니다. 이 과정은 실제 감사 현장에서 바로 설명할 수 있는 문제정의, 증거 수집, 예외 판단, 결론 작성까지 하나의 흐름으로 실습합니다.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container detail-content wide-detail">
+        <article class="content-panel highlight-panel">
+          <h2>실습 시나리오</h2>
+          <p>결산 담당자의 계정으로 해외 IP 로그인이 발생했고, 동일 계정에서 승인 전표가 생성되었습니다. 학습자는 비밀번호 정책, MFA 적용, 계정 잠금, 세션 만료 설정을 확인합니다.</p>
+          <p><strong>핵심 감사위험:</strong> 인증 통제가 약하면 이후 발생한 전표 입력·승인 행위의 책임 추적성이 떨어집니다.</p>
+        </article>
+
+        <div class="compare-grid">
+          <article class="content-panel">
+            <h2>보안 점검 실습</h2>
+            <p>정보보안기사식 보안 점검 관점에서 필요한 판단과 증거를 먼저 정의합니다. 단순 체크리스트가 아니라 왜 이 절차가 필요한지, 어떤 결론에 쓰이는지를 함께 작성합니다.</p>
+            <ul><li>비밀번호 복잡도와 변경 주기 확인</li><li>MFA 적용 대상과 예외 사용자 점검</li><li>로그인 실패와 잠금 이벤트 분석</li><li>세션 타임아웃과 동시접속 정책 확인</li><li>공유계정 사용 여부 점검</li></ul>
+          </article>
+          <article class="content-panel">
+            <h2>회계 시스템 영향 분석</h2>
+            <p>회계 시스템 감사 적용으로 연결하여 수업 산출물이 실제 감사조서, 개선권고, 포트폴리오 설명 자료로 이어지도록 만듭니다.</p>
+            <ul><li>인증과 계정 잠금 통제와 관련된 원천 데이터 또는 증거 위치를 식별합니다.</li><li>정상 처리와 예외 처리를 구분하는 판단 기준을 작성합니다.</li><li>검토 결과를 위험도, 영향도, 추가 확인 필요 항목으로 분류합니다.</li><li>담당자 인터뷰 질문과 요청 증빙 목록을 만듭니다.</li><li>최종 결론 문구와 개선 권고안을 작성합니다.</li></ul>
+          </article>
+        </div>
+
+        <article class="content-panel">
+          <h2>비교 포인트</h2>
+          <div class="table-wrap">
+            <table class="audit-table">
+              <thead><tr><th>구분</th><th>정보보안기사식 보안 점검 관점</th><th>회계 시스템 감사 적용</th></tr></thead>
+              <tbody>
+                <tr><th>출발점</th><td>위험, 통제목적, 감사증거의 신뢰성을 먼저 정의합니다.</td><td>데이터, 로그, 증빙, 산출물로 검증 가능한 절차를 설계합니다.</td></tr>
+                <tr><th>검토 방식</th><td>인터뷰, 문서검토, 설정 확인, 표본 검토로 통제 수행 여부를 확인합니다.</td><td>전체 모집단 분석, 예외 추출, 재수행 테스트, 결과 대사를 수행합니다.</td></tr>
+                <tr><th>최종 산출물</th><td>감사 판단과 미비점 근거를 조서화합니다.</td><td>반복 가능한 분석 파일, 예외 리스트, 개선 권고안으로 연결합니다.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="content-panel">
+          <h2>실습 데이터 예시</h2>
+          <p>교육에서는 다음과 같은 필드를 가진 샘플 CSV 또는 엑셀 파일을 사용합니다. 데이터는 실무 자료와 유사한 구조로 만들되 개인정보와 회사 고유정보는 모두 제거한 가상 데이터로 구성합니다.</p>
+          <ul class="code-list"><li><code>AUTH_POLICY: policy_item, configured_value, required_value</code></li><li><code>LOGIN_EVENT: user_id, ip_address, country, result, event_at</code></li><li><code>SESSION_LOG: session_id, user_id, started_at, expired_at</code></li></ul>
+        </article>
+
+        <article class="content-panel practice-flow">
+          <h2>교육 진행 흐름</h2>
+          <ol><li><strong>1단계:</strong> 회계 시스템 자산과 보안 위협을 식별합니다.</li><li><strong>2단계:</strong> 설정값, 로그, 권한, 취약점 증거를 수집합니다.</li><li><strong>3단계:</strong> 기술 취약점이 회계 데이터에 미치는 영향을 평가합니다.</li><li><strong>4단계:</strong> 개선조치와 재테스트 기준을 작성합니다.</li><li><strong>5단계:</strong> 감사보고용 발견사항으로 정리합니다.</li></ol>
+        </article>
+
+        <article class="content-panel">
+          <h2>교육 산출물</h2>
+          <ul><li>보안 점검 체크리스트</li><li>회계 시스템 영향도 평가표</li><li>취약점별 개선 권고안</li><li>재테스트 증거 목록</li></ul>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>Audit<span>Secu</span> Academy</strong>
+        <p>회계감사, 내부회계관리, 전산감사, 정보보안 감사 영역을 통합한 실무 중심 교육 플랫폼</p>
+      </div>
+      <div class="footer-links">
+        <a href="../../index.html#curriculum">교육과정</a>
+        <a href="../../index.html#contact">상담</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
