@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ITAC 감사보고 정리 | AuditSecu Academy</title>
+  <meta name="description" content="ITAC 감사보고 정리 세부 교육과정" />
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../index.html">Audit<span>Secu</span> Academy</a>
+      <button class="nav-toggle" type="button" aria-label="메뉴 표시" data-nav-toggle>☰</button>
+      <nav class="site-nav" data-nav>
+        <a href="../../index.html#curriculum">실무 교육과정</a>
+        <a href="../synthetic-data.html">데이터셋 구축</a><a href="../ai-ocr.html">AI OCR 구축</a>
+        <a href="../case-audit.html">통합 감사 사례</a>
+        <a href="../../index.html#contact">교육 상담</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-title">
+        <div class="page-top">
+          <a class="back-link" href="itgc-itac-09.html">← 이전 과정</a>
+          <a class="back-link" href="../../index.html#curriculum">전체 교육과정</a>
+        </div>
+        <h1>05-10. ITAC 감사보고 정리</h1>
+        <p>테스트 결과를 감사 발견사항, 영향도, 개선권고로 정리합니다.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container detail-content wide-detail">
+        <article class="content-panel highlight-panel">
+          <h2>실습 시나리오</h2>
+          <p>접근권한, 변경관리, 인터페이스, 자동계산, 설정값 테스트에서 여러 예외가 발견되었습니다. 학습자는 발견사항을 중복 없이 통합하고 경영진 보고용 문구로 정리합니다.</p>
+          <p><strong>핵심 감사위험:</strong> 개별 예외를 단순 나열하면 재무제표 영향, 통제 중요도, 개선 우선순위가 불명확해져 감사 결론과 후속조치가 약해질 수 있습니다.</p>
+          <p><strong>과정 구분:</strong> ITAC</p>
+        </article>
+
+        <div class="compare-grid">
+          <article class="content-panel">
+            <h2>발견사항 정리 실습</h2>
+            <p>ITAC 테스트 결과를 통제 목적, 원인, 영향, 개선안 중심으로 구조화합니다.</p>
+            <ul><li>예외를 설계 미비, 운영 미비, 데이터 오류, 증거 부족으로 분류합니다.</li><li>동일 원인에서 발생한 예외를 하나의 발견사항으로 통합합니다.</li><li>재무제표 영향, 업무 영향, ITGC 의존성 영향을 구분합니다.</li><li>발견사항별 심각도와 개선 우선순위를 산정합니다.</li><li>경영진 답변 요청 문구와 후속조치 기준을 작성합니다.</li></ul>
+          </article>
+          <article class="content-panel">
+            <h2>보고서 작성 실습</h2>
+            <p>감사조서 결론을 경영진 보고서와 개선 로드맵으로 변환합니다.</p>
+            <ul><li>테스트 범위, 모집단, 절차, 결과를 요약 문단으로 작성합니다.</li><li>예외 리스트를 핵심 발견사항 표로 재구성합니다.</li><li>개선권고를 단기 조치와 구조적 개선으로 구분합니다.</li><li>재테스트 일정과 책임부서를 후속조치 표에 반영합니다.</li><li>ITAC 감사보고의 최종 결론과 제한사항을 명확히 작성합니다.</li></ul>
+          </article>
+        </div>
+
+        <article class="content-panel">
+          <h2>감사 접근 비교 포인트</h2>
+          <div class="table-wrap">
+            <table class="audit-table">
+              <thead><tr><th>구분</th><th>통제 설계 검토</th><th>데이터 기반 운영평가</th></tr></thead>
+              <tbody><tr><th>감사 초점</th><td>발견사항 정리 실습에서 통제 설계와 책임 구조를 확인합니다.</td><td>보고서 작성 실습에서 데이터와 시스템 결과로 운영 여부를 입증합니다.</td></tr><tr><th>증거 방식</th><td>정책서, 승인 문서, 인터뷰, 화면 증거를 활용합니다.</td><td>원천 테이블, 로그, 변경 이력, 재수행 결과를 활용합니다.</td></tr><tr><th>결론 연결</th><td>통제 미비의 원인과 보완통제 필요성을 정리합니다.</td><td>예외 건수, 금액 영향, 반복 가능 감사절차를 산출합니다.</td></tr></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="content-panel">
+          <h2>실습 데이터 예시</h2>
+          <p>교육에서는 다음과 같은 필드를 가진 샘플 CSV 또는 엑셀 파일을 사용합니다. 데이터는 실제 ERP와 감사조서 구조를 단순화하여 구성하고, 일부 오류를 의도적으로 반영합니다.</p>
+          <ul class="code-list"><li><code>ITAC_EXCEPTION: control_id, exception_id, exception_type, root_cause, impact_amount</code></li><li><code>MANAGEMENT_RESPONSE: finding_id, action_plan, owner, target_date</code></li><li><code>FOLLOW_UP: finding_id, status, retest_result, closed_date</code></li></ul>
+        </article>
+
+        <article class="content-panel practice-flow">
+          <h2>교육 진행 흐름</h2>
+          <ol>
+            <li><strong>통제 이해:</strong> 업무 프로세스와 시스템 흐름을 읽고 통제 목적을 표시합니다.</li>
+            <li><strong>위험 식별:</strong> 오류가 발생할 수 있는 입력, 처리, 출력, 변경 지점을 정리합니다.</li>
+            <li><strong>증거 설계:</strong> 필요한 정책서, 화면, 로그, 테이블, 승인 증적을 정의합니다.</li>
+            <li><strong>테스트 수행:</strong> 설계평가와 운영평가 절차를 수행하고 예외를 분류합니다.</li>
+            <li><strong>결론 작성:</strong> 재무제표 영향, 통제 영향, 개선권고를 감사조서 문구로 작성합니다.</li>
+          </ol>
+        </article>
+
+        <article class="content-panel">
+          <h2>교육 산출물</h2>
+          <ul><li>ITAC 발견사항 요약표</li><li>경영진 보고서 초안</li><li>개선권고 및 후속조치표</li><li>최종 ITAC 감사결론 메모</li></ul>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>Audit<span>Secu</span> Academy</strong>
+        <p>회계감사, 내부회계관리, 전산감사, 정보보안 감사 영역을 통합한 실무 중심 교육 플랫폼</p>
+      </div>
+      <div class="footer-links">
+        <a href="../../index.html#curriculum">교육과정</a>
+        <a href="../../index.html#contact">상담</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
