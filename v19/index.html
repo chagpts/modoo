@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AuditSecu | AI 기반 회계·감사·보안 리스크 점검 플랫폼</title>
+<meta content="AuditSecu는 회계 문서, ERP 데이터, 승인 이력, 권한, 로그, 시스템 코드를 통합 분석하여 ITGC·ITAC 관점의 감사와 내부통제 점검을 지원하는 AI 플랫폼입니다." name="description"/>
+<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet"/>
+<link href="./assets/css/style.css" rel="stylesheet"/>
+<style id="custom-hero-slow-reveal">
+/* Hero layout and ordered slow reveal.
+   Text now appears in natural Korean reading order: left-to-right, top-to-bottom. */
+.hero-grid {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+.hero-copy {
+  max-width: 920px;
+}
+.hero-copy h1,
+.hero-copy .lead {
+  overflow: hidden;
+}
+.hero-line,
+.hero-sentence {
+  display: block;
+}
+.hero-line + .hero-line,
+.hero-sentence + .hero-sentence {
+  margin-top: 0.18em;
+}
+.hero-chunk {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(6px);
+  animation: heroReadReveal 0.9s cubic-bezier(.2,.8,.2,1) forwards;
+  animation-delay: var(--delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+.hero-space {
+  display: inline;
+}
+.hero-keyword {
+  font-weight: 800;
+}
+@keyframes heroReadReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-chunk {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+</style></head>
+<body>
+<nav class="nav">
+<div class="container nav-inner">
+<a class="logo" href="#home">Audit<span>Secu</span></a>
+<ul aria-label="주요 메뉴" class="menu">
+<li><a href="#platform">플랫폼</a></li>
+<li><a href="#capabilities">핵심 기능</a></li>
+<li><a href="#showcase">대표 예시</a></li>
+<li><a href="#deliverables">산출물</a></li>
+<li><a href="#contact">상담 문의</a></li>
+</ul>
+<a class="nav-cta" href="#contact">도입 상담</a>
+</div>
+</nav>
+<main id="home">
+<section class="hero">
+<video aria-hidden="true" autoplay="" class="hero-video" loop="" muted="" playsinline="" preload="metadata">
+<source src="./4.mp4" type="video/mp4"/>
+</video>
+<div aria-hidden="true" class="hero-overlay"></div>
+<div class="container hero-grid">
+<div class="hero-copy reveal">
+<h1>
+<span class="hero-line">
+<span class="hero-chunk hero-keyword" style="--delay: 0ms;">회계</span><span class="hero-chunk" style="--delay: 360ms;">·</span><span class="hero-chunk hero-keyword" style="--delay: 720ms;">감사</span><span class="hero-chunk" style="--delay: 1080ms;">·</span><span class="hero-chunk hero-keyword" style="--delay: 1440ms;">보안 리스크</span><span class="hero-chunk" style="--delay: 1800ms;">를</span>
+</span>
+<span class="hero-line">
+<span class="hero-chunk hero-keyword" style="--delay: 2400ms;">하나의 흐름</span><span class="hero-chunk" style="--delay: 2900ms;">으로 점검합니다.</span>
+</span>
+</h1>
+<p class="lead">
+<span class="hero-sentence">
+<span class="hero-chunk hero-keyword" style="--delay: 3900ms;">AuditSecu</span><span class="hero-chunk" style="--delay: 4300ms;">는 ITGC 및 ITAC 관점에서</span><span class="hero-space"> </span><span class="hero-chunk" style="--delay: 4800ms;">회계 문서, ERP 데이터, 승인 이력, 권한, 로그, 시스템 코드를</span><span class="hero-space"> </span><span class="hero-chunk hero-keyword" style="--delay: 5400ms;">통합 분석합니다.</span>
+</span>
+<span class="hero-sentence">
+<span class="hero-chunk hero-keyword" style="--delay: 6400ms;">재무보고 오류</span><span class="hero-chunk" style="--delay: 6900ms;">와</span><span class="hero-space"> </span><span class="hero-chunk hero-keyword" style="--delay: 7300ms;">내부통제 미비 가능성</span><span class="hero-chunk" style="--delay: 7900ms;">을 선별하는</span><span class="hero-space"> </span><span class="hero-chunk" style="--delay: 8400ms;">AI 기반 업무 플랫폼입니다.</span>
+</span>
+</p>
+<div class="hero-actions">
+<a class="btn-primary" href="#showcase">대표 예시 보기</a>
+<a class="btn-secondary" href="#platform">플랫폼 개요</a>
+</div>
+<div class="hero-chips">
+<span>AI OCR</span><span>Journal Testing</span><span>ITGC / ITAC</span><span>Security Review</span><span>Audit Report</span>
+</div>
+</div>
+
+</div>
+</section>
+<section class="section" id="platform">
+<div class="container intro-grid">
+<div class="section-head reveal">
+<h2>감사인이 확인해야 할 근거와 산출물을 중심으로 설계했습니다.</h2>
+<p>
+            AuditSecu는 단순 데이터 대시보드가 아니라, 실제 회계·감사·내부통제 업무에서 검토해야 할 항목을 정리하고
+            감사 조서와 내부회계관리 보고서 초안까지 연결하는 업무형 플랫폼입니다.
+          </p>
+</div>
+<div class="workflow-card reveal">
+<header>
+<strong>Standard Review Flow</strong>
+<span>From data to report</span>
+</header>
+<ol class="steps">
+<li><b>1</b><span><strong>데이터 수집</strong>계약서, 전표, 증빙, 승인 이력, ERP 로그, 권한표, 소스코드 업로드</span></li>
+<li><b>2</b><span><strong>AI 분석</strong>OCR, 필드 추출, 회계처리 검토, 통제 기준 적용, 취약 코드 식별</span></li>
+<li><b>3</b><span><strong>리스크 연결</strong>거래 오류, 승인 미비, 권한 남용, 재무제표 왜곡 가능성 분석</span></li>
+<li><b>4</b><span><strong>산출물 생성</strong>검토 근거, 예외사항, 개선 권고, 감사 조서 및 내부회계 보고서 초안 제공</span></li>
+</ol>
+</div>
+</div>
+</section>
+<section class="section" id="capabilities">
+<div class="container">
+<div class="section-head center reveal">
+<h2>기업이 이해하기 쉬운 네 가지 업무 영역</h2>
+<p>회계 처리, 내부통제, 전산감사, 정보보안 점검을 재무보고 리스크 관점으로 연결합니다.</p>
+</div>
+<div class="cards-grid">
+<article class="card reveal">
+<span class="num">01</span>
+<h3>회계 문서 분석</h3>
+<p>계약서와 증빙에서 회계처리에 필요한 조건을 추출하고 전표·재무제표 반영을 검토합니다.</p>
+<ul><li>대출·리스·매출 계약</li><li>AI OCR 및 조건 추출</li><li>분개 후보 생성</li></ul>
+</article>
+<article class="card reveal">
+<span class="num">02</span>
+<h3>ITAC 통제 점검</h3>
+<p>계산 로직, 승인 조건, 마감 기준, 시스템 입력값이 적절히 작동하는지 점검합니다.</p>
+<ul><li>이자율 재계산</li><li>Cut-off 검토</li><li>승인·마감 통제</li></ul>
+</article>
+<article class="card reveal">
+<span class="num">03</span>
+<h3>ITGC·보안 점검</h3>
+<p>권한, 로그, 코드 취약점이 회계 데이터 변경 위험으로 이어지는지 확인합니다.</p>
+<ul><li>권한 분리</li><li>관리자 로그</li><li>취약 코드 리뷰</li></ul>
+</article>
+<article class="card reveal">
+<span class="num">04</span>
+<h3>감사 산출물 생성</h3>
+<p>검토 절차, 발견 사항, 근거 데이터, 개선 권고를 보고서 형태로 구조화합니다.</p>
+<ul><li>전산감사 조서</li><li>내부회계관리 보고서</li><li>개선 과제 목록</li></ul>
+</article>
+</div>
+</div>
+</section>
+<section class="section showcase" id="showcase">
+<div class="container">
+<div class="section-head center reveal">
+<h2>두 가지 예시로 보여주는 AuditSecu의 업무 범위</h2>
+<p>홈페이지 방문자가 “이 플랫폼이 무엇을 하는지” 바로 이해할 수 있도록 회계 감사와 보안 점검을 대표 시나리오로 구성했습니다.</p>
+</div>
+<div class="scenario-stack">
+<article class="scenario reveal">
+<div class="scenario-copy">
+<h3>대출 계약서 기반 회계처리 및 내부통제 점검</h3>
+<p>
+                대출 계약서 PDF를 업로드하면 AI OCR이 계약 조건을 추출하고, 차입금 인식 분개와 이자비용 계산,
+                손익계산서·재무상태표 반영, Cut-off 및 승인 통제 점검까지 연결합니다.
+              </p>
+<div class="scenario-files">
+<div class="file-pill"><b>loan_agreement.pdf</b><span>대출금 5억원 · 연 5.2% · 만기 3년 · 매월 이자 지급</span></div>
+<div class="file-pill"><b>erp_journal_log.csv</b><span>전표 생성, 승인, 마감 이후 수정 이력</span></div>
+<div class="file-pill"><b>approval_history.xlsx</b><span>승인권한자, 승인일시, 위임 승인 여부</span></div>
+</div>
+</div>
+
+</article>
+<article class="scenario dark reveal">
+<div class="scenario-copy">
+<h3>회계 시스템 보안 취약점이 재무제표에 미치는 영향 점검</h3>
+<p>
+                회계 시스템 코드에서 Statement 기반 SQL 문자열 결합이 발견되면, AI는 SQL Injection 취약 가능성을 식별하고
+                해당 취약점이 권한 우회, 회계 DB 무단 변경, 재무상태표 왜곡 리스크로 연결될 수 있는지 감사 관점에서 평가합니다.
+              </p>
+<div class="scenario-files">
+<div class="file-pill"><b>ap_invoice_search.java</b><span>매입채무 조회 화면의 DB 조회 코드</span></div>
+<div class="file-pill"><b>database_role_matrix.xlsx</b><span>애플리케이션 계정 권한, 변경 권한, 운영자 권한</span></div>
+<div class="file-pill"><b>financial_statement_mapping.csv</b><span>DB 테이블과 재무상태표 계정 매핑</span></div>
+</div>
+</div>
+
+</article>
+</div>
+</div>
+</section>
+<section class="section deliverables" id="deliverables">
+<div class="container">
+<div class="section-head center reveal">
+<h2>최종 결과물은 검토자가 바로 사용할 수 있는 문서입니다.</h2>
+<p>분석 화면에서 끝나지 않고, 감사·내부통제·보안 담당자가 후속 조치할 수 있는 형태로 산출물을 제공합니다.</p>
+</div>
+<div class="deliverable-grid">
+<article class="deliverable reveal"><b>01. 예외 항목 목록</b><p>검토가 필요한 거래, 통제 미비, 권한 예외, 코드 취약점을 위험도와 근거별로 정리합니다.</p></article>
+<article class="deliverable reveal"><b>02. 감사 근거 패키지</b><p>원천 데이터, 계약서 추출값, 전표, 승인 이력, 로그, 코드 위치를 하나의 검토 단위로 묶습니다.</p></article>
+<article class="deliverable reveal"><b>03. 보고서 초안</b><p>전산감사 조서, 내부회계관리 운영평가, ITGC·ITAC 개선 권고 보고서 초안을 생성합니다.</p></article>
+</div>
+</div>
+</section>
+<section class="cta" id="contact">
+<div class="container cta-card">
+<div>
+<h2>회계 데이터와 IT 통제를 함께 보는 감사 플랫폼을 도입하세요.</h2>
+<p>AuditSecu는 기업의 회계·감사·보안 조직이 동일한 데이터 기준으로 리스크를 확인하고 개선 과제를 관리할 수 있도록 지원합니다.</p>
+</div>
+<a class="btn-primary" href="mailto:contact@auditsecu.example">도입 상담 문의</a>
+</div>
+</section>
+</main>
+<footer>
+<div class="container">
+<span>© 2026 AuditSecu. All rights reserved.</span>
+<span>AI Audit · ITGC · ITAC · Security Risk Review</span>
+</div>
+</footer>
+<script src="./assets/js/script.js"></script>
+</body>
+</html>
