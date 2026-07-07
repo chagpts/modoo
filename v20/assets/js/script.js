@@ -1,117 +1,140 @@
-const revealTargets = document.querySelectorAll('.reveal');
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
+const $ = (selector, parent = document) => parent.querySelector(selector);
+const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Scroll reveal
+const revealItems = $$('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealItems.forEach((item) => revealObserver.observe(item));
+
+// Cursor glow
+const cursorGlow = $('.cursor-glow');
+if (cursorGlow && !prefersReducedMotion) {
+  window.addEventListener('pointermove', (event) => {
+    cursorGlow.style.opacity = '1';
+    cursorGlow.style.transform = `translate(${event.clientX}px, ${event.clientY}px) translate(-50%, -50%)`;
+  });
+}
+
+// Magnetic buttons and logo
+if (!prefersReducedMotion) {
+  $$('.magnetic').forEach((el) => {
+    el.addEventListener('pointermove', (event) => {
+      const rect = el.getBoundingClientRect();
+      const x = event.clientX - rect.left - rect.width / 2;
+      const y = event.clientY - rect.top - rect.height / 2;
+      el.style.transform = `translate(${x * 0.12}px, ${y * 0.18}px)`;
     });
-  }, { threshold: 0.12 });
-  revealTargets.forEach((target) => observer.observe(target));
-} else {
-  revealTargets.forEach((target) => target.classList.add('is-visible'));
+    el.addEventListener('pointerleave', () => {
+      el.style.transform = 'translate(0, 0)';
+    });
+  });
 }
 
-const video = document.querySelector('.hero-video');
-if (video) {
-  video.addEventListener('error', () => { video.style.display = 'none'; });
+// Tilt cards
+if (!prefersReducedMotion) {
+  $$('.tilt-card').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `rotateX(${y * -7}deg) rotateY(${x * 9}deg) translateY(-6px)`;
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.transform = 'rotateX(0) rotateY(0) translateY(0)';
+    });
+  });
 }
 
-const scenarios = {
-  loan: {
-    title: '대출 계약서', summary: '원금, 이자율, 만기를 추출하고 분개와 통제를 점검합니다.', icon: '📄', file: 'loan_agreement.pdf', meta: 'PDF · 분석 대기',
-    fields: [['원금','500,000,000원'], ['이자율','연 5.2%'], ['만기','3년']],
-    head: ['일자','차변','대변','금액'], rows: [['06-29','현금','차입금','500,000,000'], ['06-30','이자비용','미지급이자','71,233']],
-    fs: [['부채 증가','500,000,000원'], ['위험 등급','중간']], controls: [['이자율 재계산','일치'], ['Cut-off','추가 확인']],
-    conclusion: '차입금 인식은 적정하나 월말 이자비용 검토가 필요합니다.', bullets: ['계약 조건과 전표가 일치합니다.', '미지급이자 자동계산 통제를 확인해야 합니다.']
-  },
-  invoice: {
-    title: '세금계산서', summary: '공급가액, 부가세, 거래처를 ERP와 비교합니다.', icon: '🧾', file: 'purchase_invoice.xml', meta: 'XML · 분석 대기',
-    fields: [['공급가액','18,700,000원'], ['부가세','1,870,000원'], ['거래처','대성소프트']],
-    head: ['항목','증빙','ERP','결과'], rows: [['공급가액','18,700,000','18,700,000','일치'], ['부가세','1,870,000','1,780,000','불일치']],
-    fs: [['매입채무','20,570,000원'], ['위험 등급','높음']], controls: [['증빙 중복','없음'], ['부가세 검증','불일치']],
-    conclusion: '부가세 금액 불일치가 발견되어 수정 검토가 필요합니다.', bullets: ['공급가액은 일치합니다.', '부가세 입력값 재확인이 필요합니다.']
-  },
-  receipt: {
-    title: '법인카드 영수증', summary: '사용자, 시간, 업종, 계정과목을 검토합니다.', icon: '💳', file: 'corporate_card.jpg', meta: 'JPG · 분석 대기',
-    fields: [['금액','342,000원'], ['업종','유흥'], ['사용일시','토요일 23:41']],
-    head: ['항목','값','판단','조치'], rows: [['업종','유흥','예외','승인 필요'], ['시간','야간/휴일','주의','소명 요청']],
-    fs: [['비용 후보','342,000원'], ['위험 등급','높음']], controls: [['휴일 사용','탐지'], ['증빙 첨부','확인']],
-    conclusion: '정책 예외 가능성이 있어 소명과 승인 이력 확인이 필요합니다.', bullets: ['휴일 야간 사용입니다.', '업종 제한 규정과 대조해야 합니다.']
-  },
-  access: {
-    title: 'ERP 권한표', summary: '직무분리와 퇴사자 계정 위험을 점검합니다.', icon: '🔐', file: 'erp_access_matrix.xlsx', meta: 'XLSX · 분석 대기',
-    fields: [['사용자','김OO'], ['권한','전표 작성+승인'], ['상태','재직']],
-    head: ['사용자','권한 조합','위험','결과'], rows: [['김OO','작성+승인','SoD 위반','검토'], ['박OO','관리자','과다 권한','검토']],
-    fs: [['영향 영역','전표 승인'], ['위험 등급','높음']], controls: [['직무분리','위반'], ['권한 재검토','필요']],
-    conclusion: '전표 작성과 승인 권한이 한 사용자에게 집중되어 통제 미비가 의심됩니다.', bullets: ['직무분리 위반 후보가 있습니다.', '권한 회수 또는 승인 보완이 필요합니다.']
-  },
-  log: {
-    title: '접속 로그', summary: '비정상 시간, 관리자 접근, 데이터 변경을 확인합니다.', icon: '🧠', file: 'erp_access_log.csv', meta: 'CSV · 분석 대기',
-    fields: [['접속','02:13'], ['계정','admin'], ['작업','전표 수정']],
-    head: ['시간','계정','작업','판단'], rows: [['02:13','admin','전표 수정','예외'], ['02:17','admin','로그 조회','주의']],
-    fs: [['영향 영역','매출/비용'], ['위험 등급','중간']], controls: [['야간 접근','탐지'], ['변경 승인','미확인']],
-    conclusion: '야간 관리자 전표 수정 로그가 있어 승인 근거 확인이 필요합니다.', bullets: ['비업무시간 접속입니다.', '변경관리 티켓과 대조해야 합니다.']
-  }
-};
+// Particle canvas for hero motion graphics
+const canvas = $('#particleCanvas');
+const ctx = canvas?.getContext('2d');
+let particles = [];
+let width = 0;
+let height = 0;
+let rafId = null;
 
-let currentScenario = 'loan';
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => [...document.querySelectorAll(selector)];
+function resizeCanvas() {
+  if (!canvas || !ctx) return;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  width = canvas.offsetWidth;
+  height = canvas.offsetHeight;
+  canvas.width = width * dpr;
+  canvas.height = height * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-function renderScenario(key) {
-  if (!scenarios[key]) return;
-  currentScenario = key;
-  const data = scenarios[key];
-  $('#caseTitle') && ($('#caseTitle').textContent = data.title);
-  $('#caseSummary') && ($('#caseSummary').textContent = data.summary);
-  $('#caseFileIcon') && ($('#caseFileIcon').textContent = data.icon);
-  $('#caseFileName') && ($('#caseFileName').textContent = data.file);
-  $('#caseFileMeta') && ($('#caseFileMeta').textContent = data.meta);
-  $('#caseExtractFields') && ($('#caseExtractFields').innerHTML = '');
-  $('#caseJournalHead') && ($('#caseJournalHead').innerHTML = '');
-  $('#caseJournalBody') && ($('#caseJournalBody').innerHTML = '');
-  $('#caseFsBody') && ($('#caseFsBody').innerHTML = '');
-  $('#caseControlList') && ($('#caseControlList').innerHTML = '');
-  $('#caseReportConclusion') && ($('#caseReportConclusion').textContent = '');
-  $('#caseReportBullets') && ($('#caseReportBullets').innerHTML = '');
-  $('#caseDemoLog') && ($('#caseDemoLog').textContent = '[대기] 실행 버튼을 누르세요.');
-  $$('.case-card').forEach(card => { card.classList.remove('running','done'); const s = card.querySelector('.demo-status'); if (s) s.textContent = '대기'; });
-  $$('.scenario-tab').forEach(tab => tab.classList.toggle('active', tab.dataset.scenario === key));
+  const count = Math.max(42, Math.floor(width / 24));
+  particles = Array.from({ length: count }, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    vx: (Math.random() - 0.5) * 0.45,
+    vy: (Math.random() - 0.5) * 0.45,
+    r: Math.random() * 2.2 + 0.8,
+    alpha: Math.random() * 0.45 + 0.18
+  }));
 }
 
-function fillData() {
-  const data = scenarios[currentScenario];
-  $('#caseExtractFields').innerHTML = data.fields.map(([k,v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('');
-  $('#caseJournalHead').innerHTML = `<tr>${data.head.map(h => `<th>${h}</th>`).join('')}</tr>`;
-  $('#caseJournalBody').innerHTML = data.rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('');
-  $('#caseFsBody').innerHTML = data.fs.map(([k,v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
-  $('#caseControlList').innerHTML = data.controls.map(([k,v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('');
-  $('#caseReportConclusion').textContent = data.conclusion;
-  $('#caseReportBullets').innerHTML = data.bullets.map(item => `<li>${item}</li>`).join('');
+function drawParticles() {
+  if (!canvas || !ctx) return;
+  ctx.clearRect(0, 0, width, height);
+
+  particles.forEach((p, index) => {
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0 || p.x > width) p.vx *= -1;
+    if (p.y < 0 || p.y > height) p.vy *= -1;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(37, 99, 235, ${p.alpha})`;
+    ctx.fill();
+
+    for (let j = index + 1; j < particles.length; j++) {
+      const q = particles[j];
+      const dx = p.x - q.x;
+      const dy = p.y - q.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(q.x, q.y);
+        ctx.strokeStyle = `rgba(37, 99, 235, ${(1 - dist / 120) * 0.12})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+  });
+
+  rafId = requestAnimationFrame(drawParticles);
 }
 
-async function runDemo() {
-  if (!$('#caseDemoLog')) return;
-  fillData();
-  const cards = $$('.case-card');
-  const log = $('#caseDemoLog');
-  log.textContent = '[시작] 샘플 파일 분석';
-  for (let i = 0; i < cards.length; i++) {
-    cards.forEach(card => card.classList.remove('running'));
-    cards[i].classList.add('running');
-    const status = cards[i].querySelector('.demo-status');
-    if (status) status.textContent = '처리 중';
-    log.textContent += `\n[${i + 1}/6] ${cards[i].querySelector('h3').textContent}`;
-    await new Promise(resolve => setTimeout(resolve, 650));
-    cards[i].classList.remove('running');
-    cards[i].classList.add('done');
-    if (status) status.textContent = '완료';
-  }
-  log.textContent += '\n[완료] 보고서 초안 생성';
+if (canvas && ctx && !prefersReducedMotion) {
+  resizeCanvas();
+  drawParticles();
+  window.addEventListener('resize', resizeCanvas);
+} else if (canvas) {
+  canvas.style.display = 'none';
 }
 
-$$('.scenario-tab').forEach(tab => tab.addEventListener('click', () => renderScenario(tab.dataset.scenario)));
-$$('[data-run-case-demo]').forEach(btn => btn.addEventListener('click', runDemo));
-renderScenario(currentScenario);
+// Hero video parallax
+const heroVideo = $('.hero-video');
+const heroVisual = $('.hero-visual');
+if (!prefersReducedMotion) {
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (heroVideo) heroVideo.style.transform = `scale(1.1) translateY(${y * 0.08}px)`;
+    if (heroVisual) heroVisual.style.transform = `translateY(${y * -0.04}px)`;
+  }, { passive: true });
+}
+
+window.addEventListener('beforeunload', () => {
+  if (rafId) cancelAnimationFrame(rafId);
+});
